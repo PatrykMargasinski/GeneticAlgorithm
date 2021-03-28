@@ -1,124 +1,107 @@
+import mutation.*;
+import someMethods.FloatToBytes;
+import someMethods.SomeMethods;
+import crossing.*;
+import selection.*;
 import java.util.*;
 
 public class GeneticAlgorithm
 {
     int populationAmount;
-    List<Float> population=new ArrayList<>();
+    List<Float> population;
     float epochsNumber;
+    ISelection selection;
+    ICrossover crossover;
+    IMutation mutation;
+    FloatToBytes converter=new FloatToBytes(-10,10);
 
-    public GeneticAlgorithm(int populationAmount, float epochsNumber)
+    public GeneticAlgorithm(int populationAmount, float epochsNumber, Selection selection, Crossover crossover, Mutation mutation)
     {
         this.populationAmount=populationAmount;
         this.epochsNumber=epochsNumber;
+        generatePopulation();
+        mutationChoice(mutation);
+        selectionChoice(selection);
+        crossoverChoice(crossover);
+    }
+
+
+    public void run()
+    {
+        Random random=new Random();
+        for(int i=0;i<epochsNumber;i++)
+        {
+            List<Float> chosenOnes=selection.select(population);
+            List<Float> chosenOnesCopy=new ArrayList<>(chosenOnes);
+            while(population.size()<populationAmount)
+            {
+                List<StringBuilder> couple=new ArrayList<>();
+                for(int j=0;j<2;j++) {
+                    Float child=chosenOnesCopy.remove(random.nextInt(chosenOnesCopy.size()));
+                    couple.add(new StringBuilder(converter.floatToBinary(child)));
+                }
+                int index=random.nextInt(2);
+                population.add(converter.binaryToFloat(couple.get(index).toString()));
+            }
+        }
+    }
+
+    void generatePopulation()
+    {
+        population=new ArrayList<>();
         Random random=new Random();
         for(int i=0;i<populationAmount;i++)
         {
-            population.add(random.nextFloat()*100-50);
+            population.add(random.nextFloat()*10-5);
         }
     }
 
-    float bestPercent=0.4f;
-
-    public List<Float> bestSelection()
+    void selectionChoice(Selection selection)
     {
-        List<Float> chosenOnes=new ArrayList<>();
-        Collections.sort(population,Comparator.comparing(Main::fun).reversed());
-        for(int i=0;i<population.size()*bestPercent;i++)
-            chosenOnes.add(population.get(i));
-        return chosenOnes;
+        switch (selection)
+        {
+            case Best:
+                this.selection=new BestSelection(5);
+                break;
+            case Roulette:
+                this.selection=new RouletteSelection(5);
+                break;
+            case Tournament:
+                this.selection=new TournamentSelection(5);
+        }
     }
 
-    float selectionBorder=populationAmount/4f;
-
-    public List<Float> tournamentSelection()
+    void crossoverChoice(Crossover crossover)
     {
-        List<Float> chosenOnes=new ArrayList<>();
-        for(float i=0;i<population.size();i+=selectionBorder)
+        switch (crossover)
         {
-            chosenOnes.add(findMin((int)i, (int)(i+selectionBorder)));
+            case OnePoint:
+                this.crossover=new OnePointCrossing(5,40,true);
+                break;
+            case TwoPoint:
+                this.crossover=new TwoPointCrossing(5,10,40,true);
+                break;
+            case Homogeneours:
+                this.crossover=new HomogeneousCrossing(true, 40);
+                break;
         }
-        return chosenOnes;
     }
 
-    float findMin(int a, int b)
+
+    void mutationChoice(Mutation mutation)
     {
-        float min=Float.MAX_VALUE;
-        float minValue=Float.MAX_VALUE;
-        for(int i=a;i<b;i++)
+        switch (mutation)
         {
-            if(Main.fun(population.get(i))<minValue)
-            {
-                min=population.get(i);
-                minValue=Main.fun(population.get(i));
-            }
-        }
-        return min;
-    }
-
-    int chosenAmount=4;
-
-    public List<Float> rouletteSelection()
-    {
-        List<Float> chosenOnes=new ArrayList<>();
-        int sum=0;
-        for(int i=0;i<population.size();i++)
-        {
-            sum+=Main.fun(population.get(i));
-        }
-        Random random=new Random();
-        int curChosen=0;
-        while(curChosen<chosenAmount) {
-            int randomNumber = random.nextInt() % sum;
-            int i = 0, curSum = 0;
-            while (i < populationAmount) {
-                curSum += Main.fun(population.get(i));
-                if (curSum > randomNumber) {
-                    chosenOnes.add(population.get(i));
-                    curChosen++;
-                    break;
-                }
-            }
-        }
-        return chosenOnes;
-    }
-
-    public void onePointCrossing(int point, StringBuilder sb1, StringBuilder sb2)
-    {
-        for(int i=0;i<point;i++)
-        {
-            char temp=sb1.charAt(i);
-            sb1.setCharAt(i,sb2.charAt(i));
-            sb2.setCharAt(i,temp);
+            case OnePoint:
+                this.mutation=new OnePointMutation(5,40);
+                break;
+            case TwoPoint:
+                this.mutation=new TwoPointMutation(5,20,40);
+                break;
+            case Border:
+                this.mutation=new BorderMutation(true,40);
+                break;
         }
     }
 
-    public void twoPointCrossing(int p1, int p2, StringBuilder sb1, StringBuilder sb2)
-    {
-        for(int i=0;i<p1;i++)
-        {
-            char temp=sb1.charAt(i);
-            sb1.setCharAt(i,sb2.charAt(i));
-            sb2.setCharAt(i,temp);
-        }
-
-        for(int i=p2;i<sb1.length();i++)
-        {
-            char temp=sb1.charAt(i);
-            sb1.setCharAt(i,sb2.charAt(i));
-            sb2.setCharAt(i,temp);
-        }
-    }
-
-    public void homogeneousCrossing(StringBuilder sb1, StringBuilder sb2)
-    {
-        for(int i=0;i<sb1.length();i++)
-        {
-            if(i%2==0)
-            {
-                char temp=sb1.charAt(i);
-                sb1.setCharAt(i,sb2.charAt(i));
-                sb2.setCharAt(i,temp);
-            }
-        }
-    }
 }
