@@ -37,7 +37,6 @@ public class SomeMethods {
     //do wypisywania listy
     public static String get(List<Float> list)
     {
-        Collections.sort(list);
         StringBuilder str=new StringBuilder("");
         for(float f : list)
         {

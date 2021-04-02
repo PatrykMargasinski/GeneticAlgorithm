@@ -13,10 +13,10 @@ public class Main {
 
     public static void testGenetic()
     {
-        GeneticAlgorithm geneticAlgorithm=new GeneticAlgorithm(5,50,
+        GeneticAlgorithm geneticAlgorithm=new GeneticAlgorithm(10,50,
                 Selection.Best,
-                Crossover.Homogeneours,
-                Mutation.Border);
+                Crossover.Homogeneours, 90,
+                Mutation.Border, 10);
         geneticAlgorithm.run();
     }
 
@@ -41,7 +41,7 @@ public class Main {
     public static void testSelection()
     {
         FloatToBytes ftp=new FloatToBytes(-10,10);
-        ISelection sel=new BestSelection(5);
+        ISelection sel=new BestSelection(4);
         List<Float> population=new ArrayList<>();
         population.addAll(Arrays.asList(-4.5f,-10f,4.3f,1f,-5f,6f,-3.2f,5.0f,-4f,5.4f));
         System.out.println(SomeMethods.get(sel.select(population)));
