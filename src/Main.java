@@ -2,13 +2,24 @@ import crossing.*;
 import mutation.*;
 import selection.*;
 import someMethods.FloatToBytes;
+import someMethods.SomeMethods;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        testSelection();
+        testGenetic();
     }
+
+    public static void testGenetic()
+    {
+        GeneticAlgorithm geneticAlgorithm=new GeneticAlgorithm(5,50,
+                Selection.Best,
+                Crossover.Homogeneours,
+                Mutation.Border);
+        geneticAlgorithm.run();
+    }
+
 
     public static void testCrossovers()
     {
@@ -33,8 +44,7 @@ public class Main {
         ISelection sel=new BestSelection(5);
         List<Float> population=new ArrayList<>();
         population.addAll(Arrays.asList(-4.5f,-10f,4.3f,1f,-5f,6f,-3.2f,5.0f,-4f,5.4f));
-        print(sel.select(population));
-
+        System.out.println(SomeMethods.get(sel.select(population)));
     }
 
     public static void testMutation()
@@ -48,14 +58,5 @@ public class Main {
         System.out.println("\nAfter:");
         f1=ftp.binaryToFloat(s1.toString());
         System.out.println("Value: "+f1+"\tString: "+s1);
-    }
-
-    //do wypisywania listy
-    public static void print(List<Float> list)
-    {
-        for(float f : list)
-        {
-            System.out.println(f);
-        }
     }
 }

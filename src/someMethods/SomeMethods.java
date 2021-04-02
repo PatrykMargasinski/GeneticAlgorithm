@@ -1,6 +1,8 @@
 package someMethods;
 
 import java.io.FileWriter;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class SomeMethods {
@@ -29,5 +31,23 @@ public class SomeMethods {
         {
             System.out.print("Nie dziala");
         }
+    }
+
+
+    //do wypisywania listy
+    public static String get(List<Float> list)
+    {
+        Collections.sort(list);
+        StringBuilder str=new StringBuilder("");
+        for(float f : list)
+        {
+            str.append(f+" ");
+        }
+        return str.toString();
+    }
+
+    public static void print(List<Float> list)
+    {
+        System.out.println(get(list));
     }
 }

@@ -9,7 +9,7 @@ import someMethods.SomeMethods;
 //wybor iluś najlepszych osobnikow
 public class BestSelection implements ISelection {
     int chosenAmount;//ile ma byc wybranych
-    public BestSelection(int chosenOnes)
+    public BestSelection(int chosenAmount)
     {
         this.chosenAmount=chosenAmount;
     }

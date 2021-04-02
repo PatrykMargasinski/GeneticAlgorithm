@@ -28,10 +28,18 @@ public class GeneticAlgorithm
 
     public void run()
     {
+
         Random random=new Random();
         for(int i=0;i<epochsNumber;i++)
         {
+            System.out.println("Epoka: "+i);
+            System.out.println("Populacja: "+SomeMethods.get(population));
+            System.out.println("Najlepszy: "+getBest());
+            System.out.println("\n\n");
+            //selection
             List<Float> chosenOnes=selection.select(population);
+
+            //crossing
             List<Float> chosenOnesCopy=new ArrayList<>(chosenOnes);
             while(population.size()<populationAmount)
             {
@@ -43,6 +51,15 @@ public class GeneticAlgorithm
                 int index=random.nextInt(2);
                 population.add(converter.binaryToFloat(couple.get(index).toString()));
             }
+
+            //mutation
+            for(int j=0;j<population.size();j++)
+            {
+                float mutatingNumber=population.get(j);
+                StringBuilder mutatingNumberBinary=new StringBuilder(converter.floatToBinary(mutatingNumber));
+                mutation.mutate(mutatingNumberBinary);
+                population.set(j,converter.binaryToFloat(mutatingNumberBinary.toString()));
+            }
         }
     }
 
@@ -53,7 +70,9 @@ public class GeneticAlgorithm
         for(int i=0;i<populationAmount;i++)
         {
             population.add(random.nextFloat()*10-5);
+            System.out.println("Added: "+population.get(population.size()-1));
         }
+        SomeMethods.print(population);
     }
 
     void selectionChoice(Selection selection)
@@ -102,6 +121,19 @@ public class GeneticAlgorithm
                 this.mutation=new BorderMutation(true,40);
                 break;
         }
+    }
+
+    Float getBest()
+    {
+        Float min=Float.MAX_VALUE;
+        for(Float f : population)
+        {
+            if(SomeMethods.fun(f)<min)
+            {
+                min=f;
+            }
+        }
+        return min;
     }
 
 }
