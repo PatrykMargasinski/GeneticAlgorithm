@@ -121,7 +121,7 @@ public class GeneticAlgorithm {
                 this.mutation = new TwoPointMutation(5, 20, probability);
                 break;
             case Border:
-                this.mutation = new BorderMutation(true, probability);
+                this.mutation = new BorderMutation(probability);
                 break;
         }
     }
