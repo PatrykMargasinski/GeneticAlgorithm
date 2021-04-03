@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        testInversion();
+        testGenetic();
     }
 
     public static void testGenetic() {
@@ -34,7 +34,7 @@ public class Main {
         float f1 = 3f, f2 = -6f;
         StringBuilder s1 = new StringBuilder(ftp.floatToBinary(f1));
         System.out.println("Value: " + f1 + "\tString: " + s1);
-        IInversion inversion = new Inversion();
+        IInversion inversion = new Inversion(50);
         inversion.invert(s1);
         System.out.println("\nAfter:");
         f1 = ftp.binaryToFloat(s1.toString());
