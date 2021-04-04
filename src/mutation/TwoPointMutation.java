@@ -2,20 +2,20 @@ package mutation;
 
 import someMethods.SomeMethods;
 
+import static someMethods.SomeMethods.generateRandomPoint;
+
 //mutacja dwóch punktów
 public class TwoPointMutation implements IMutation {
-    int p1,p2;
     int probability;
 
-    public TwoPointMutation(int p1, int p2, int probability)
-    {
-        this.p1=p1;
-        this.p2=p2;
-        this.probability=probability;
+    public TwoPointMutation(int probability) {
+        this.probability = probability;
     }
 
     @Override
     public void mutate(StringBuilder sb1) {
+        int p1 = generateRandomPoint(sb1.length());
+        int p2 = generateRandomPoint(sb1.length());
         if (SomeMethods.checkProbability(probability) == true) {
             char temp = sb1.charAt(p1);
             if (temp == '0') temp = '1';

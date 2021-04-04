@@ -49,4 +49,9 @@ public class SomeMethods {
     {
         System.out.println(get(list));
     }
+    //generowanie randomowego inta z przedziału 0,length
+    public static int generateRandomPoint(int length){
+        Random random = new Random();
+        return random.nextInt(length);
+    }
 }

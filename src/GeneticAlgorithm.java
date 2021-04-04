@@ -115,10 +115,10 @@ public class GeneticAlgorithm {
     void mutationChoice(Mutation mutation, int probability) {
         switch (mutation) {
             case OnePoint:
-                this.mutation = new OnePointMutation(5, probability);
+                this.mutation = new OnePointMutation(probability);
                 break;
             case TwoPoint:
-                this.mutation = new TwoPointMutation(5, 20, probability);
+                this.mutation = new TwoPointMutation(probability);
                 break;
             case Border:
                 this.mutation = new BorderMutation(probability);

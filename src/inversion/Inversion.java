@@ -4,6 +4,8 @@ import someMethods.SomeMethods;
 
 import java.util.Random;
 
+import static someMethods.SomeMethods.generateRandomPoint;
+
 public class Inversion implements IInversion {
     int probability;
 
@@ -14,9 +16,8 @@ public class Inversion implements IInversion {
     @Override
     public void invert(StringBuilder sb1) {
         if (SomeMethods.checkProbability(probability)) {
-            Random random = new Random();
-            int start = random.nextInt(sb1.length());
-            int end = random.nextInt(sb1.length());
+            int start = generateRandomPoint(sb1.length());
+            int end = generateRandomPoint(sb1.length());
             if (start > end) {
                 int x = start;
                 start = end;
