@@ -1,4 +1,6 @@
 import crossing.*;
+import inversion.IInversion;
+import inversion.Inversion;
 import mutation.*;
 import selection.*;
 import someMethods.FloatToBytes;
@@ -18,17 +20,21 @@ public class GeneticAlgorithm {
     ISelection selection;
     ICrossover crossover;
     IMutation mutation;
+    IInversion inversion;
     FloatToBytes converter = new FloatToBytes(-10, 10);
+    boolean isEliteStrategyEnabled;
 
     public GeneticAlgorithm(int populationAmount, float epochsNumber, Selection selection,
                             Crossover crossover, int crossoverProbability,
-                            Mutation mutation, int mutationProbability) {
+                            Mutation mutation, int mutationProbability, int inversionProbability, boolean isEliteStrategyEnabled) {
         this.populationAmount = populationAmount;
         this.epochsNumber = epochsNumber;
         generatePopulation();
         selectionChoice(selection);
         mutationChoice(mutation, mutationProbability);
         crossoverChoice(crossover, crossoverProbability);
+        inversionChoice(inversionProbability);
+        this.isEliteStrategyEnabled = isEliteStrategyEnabled;
     }
 
 
@@ -37,7 +43,7 @@ public class GeneticAlgorithm {
         Random random = new Random();
         for (int i = 0; i < epochsNumber; i++) {
             //save best from population
-            Float best=getBest();
+            Float best = getBest();
 
             System.out.println("Epoka: " + i);
             System.out.println("Populacja: " + SomeMethods.get(population));
@@ -48,7 +54,7 @@ public class GeneticAlgorithm {
 
             //crossing
             List<Float> chosenOnesCopy = new ArrayList<>(population);
-            while (population.size() < populationAmount-1) {
+            while (population.size() < populationAmount - 1) {
                 List<Integer> range = IntStream.range(0, chosenOnesCopy.size()).boxed()
                         .collect(Collectors.toCollection(ArrayList::new));
                 Collections.shuffle(range);
@@ -69,8 +75,17 @@ public class GeneticAlgorithm {
                 mutation.mutate(mutatingNumberBinary);
                 population.set(j, converter.binaryToFloat(mutatingNumberBinary.toString()));
             }
-            //add best to population
-            population.add(best);
+            //inversion
+            for (int j = 0; j < population.size(); j++) {
+                float invertingNumber = population.get(j);
+                StringBuilder invertingNumberBinary = new StringBuilder(converter.floatToBinary(invertingNumber));
+                inversion.invert(invertingNumberBinary);
+                population.set(j, converter.binaryToFloat(invertingNumberBinary.toString()));
+            }
+            //elite strategy: add best to population
+            if (isEliteStrategyEnabled) {
+                population.add(best);
+            }
         }
     }
 
@@ -124,6 +139,10 @@ public class GeneticAlgorithm {
                 this.mutation = new BorderMutation(probability);
                 break;
         }
+    }
+
+    void inversionChoice(int probability) {
+        this.inversion = new Inversion(probability);
     }
 
     Float getBest() {

@@ -25,7 +25,7 @@ public class Main {
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(10, 50,
                 Selection.Best,
                 Crossover.Homogeneours, 90,
-                Mutation.Border, 10);
+                Mutation.Border, 10, 10, true);
         geneticAlgorithm.run();
     }
 
