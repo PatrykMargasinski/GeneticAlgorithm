@@ -1,3 +1,4 @@
+import comparing.Extrema;
 import crossing.Crossover;
 import crossing.ICrossover;
 import crossing.OnePointCrossing;
@@ -23,8 +24,9 @@ public class Main {
 
     public static void testGenetic() {
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(10, 50,
+                Extrema.Maximum,
                 Selection.Best,
-                Crossover.Homogeneours, 90,
+                Crossover.Homogeneous, 90,
                 Mutation.Border, 10, 10, true);
         geneticAlgorithm.run();
     }
@@ -62,7 +64,7 @@ public class Main {
         ISelection sel = new BestSelection(4);
         List<Float> population = new ArrayList<>();
         population.addAll(Arrays.asList(-4.5f, -10f, 4.3f, 1f, -5f, 6f, -3.2f, 5.0f, -4f, 5.4f));
-        System.out.println(SomeMethods.get(sel.select(population)));
+        System.out.println(SomeMethods.get(sel.select(population,Extrema.Minimum)));
     }
 
     public static void testMutation() {

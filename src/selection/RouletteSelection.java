@@ -1,5 +1,6 @@
 package selection;
 
+import comparing.Extrema;
 import someMethods.SomeMethods;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class RouletteSelection implements ISelection {
     }
 
     @Override
-    public List<Float> select(List<Float> population) {
+    public List<Float> select(List<Float> population, Extrema extrema) {
         List<Float> chosenOnes = new ArrayList<>();
         for (int i = 0; i < chosenAmount; i++) {
             chosenOnes.add(getOne(population));

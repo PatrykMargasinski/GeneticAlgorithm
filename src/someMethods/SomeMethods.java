@@ -8,7 +8,7 @@ import java.util.Random;
 public class SomeMethods {
     public static Float fun(float x)
     {
-        return x*x;
+        return (x-1)*(x-1)+2;
     }
 
     //jest okreslona szansa na mutacje lub krzyżowanie. Tutaj jest metoda sprawdzająca, czy strzął o prawdopodobieństwie

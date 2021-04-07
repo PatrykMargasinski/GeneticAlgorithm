@@ -1,3 +1,7 @@
+import comparing.Extrema;
+import comparing.IExtrema;
+import comparing.Maximum;
+import comparing.Minimum;
 import crossing.*;
 import inversion.IInversion;
 import inversion.Inversion;
@@ -17,6 +21,8 @@ public class GeneticAlgorithm {
     int populationAmount;
     List<Float> population;
     float epochsNumber;
+    IExtrema extrema;
+    Extrema chosenExtrema;
     ISelection selection;
     ICrossover crossover;
     IMutation mutation;
@@ -24,12 +30,15 @@ public class GeneticAlgorithm {
     FloatToBytes converter = new FloatToBytes(-10, 10);
     boolean isEliteStrategyEnabled;
 
-    public GeneticAlgorithm(int populationAmount, float epochsNumber, Selection selection,
+    public GeneticAlgorithm(int populationAmount, float epochsNumber,
+                            Extrema extrema,
+                            Selection selection,
                             Crossover crossover, int crossoverProbability,
                             Mutation mutation, int mutationProbability, int inversionProbability, boolean isEliteStrategyEnabled) {
         this.populationAmount = populationAmount;
         this.epochsNumber = epochsNumber;
         generatePopulation();
+        extremaChoice(extrema);
         selectionChoice(selection);
         mutationChoice(mutation, mutationProbability);
         crossoverChoice(crossover, crossoverProbability);
@@ -43,14 +52,14 @@ public class GeneticAlgorithm {
         Random random = new Random();
         for (int i = 0; i < epochsNumber; i++) {
             //save best from population
-            Float best = getBest();
+            Float best = extrema.getExtrema(population);
 
             System.out.println("Epoka: " + i);
             System.out.println("Populacja: " + SomeMethods.get(population));
             System.out.println("Najlepszy: " + best);
             System.out.println("\n\n");
             //selection
-            population = selection.select(population);
+            population = selection.select(population,chosenExtrema);
 
             //crossing
             List<Float> chosenOnesCopy = new ArrayList<>(population);
@@ -99,6 +108,20 @@ public class GeneticAlgorithm {
         SomeMethods.print(population);
     }
 
+    void extremaChoice(Extrema extrema)
+    {
+        chosenExtrema=extrema;
+        switch (extrema)
+        {
+            case Maximum:
+                this.extrema= new Maximum();
+                break;
+            case Minimum:
+                this.extrema= new Minimum();
+                break;
+        }
+    }
+
     void selectionChoice(Selection selection) {
         switch (selection) {
             case Best:
@@ -120,7 +143,7 @@ public class GeneticAlgorithm {
             case TwoPoint:
                 this.crossover = new TwoPointCrossing(5, 10, probability, true);
                 break;
-            case Homogeneours:
+            case Homogeneous:
                 this.crossover = new HomogeneousCrossing(true, probability);
                 break;
         }
@@ -143,16 +166,6 @@ public class GeneticAlgorithm {
 
     void inversionChoice(int probability) {
         this.inversion = new Inversion(probability);
-    }
-
-    Float getBest() {
-        Float min = Float.MAX_VALUE;
-        for (Float f : population) {
-            if (SomeMethods.fun(f) < SomeMethods.fun(min)) {
-                min = f;
-            }
-        }
-        return min;
     }
 
 }

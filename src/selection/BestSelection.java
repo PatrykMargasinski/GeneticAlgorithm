@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import comparing.Extrema;
 import someMethods.SomeMethods;
 
 //wybor iluś najlepszych osobnikow
@@ -15,9 +17,12 @@ public class BestSelection implements ISelection {
     }
 
     @Override
-    public List<Float> select(List<Float> population){
+    public List<Float> select(List<Float> population, Extrema extrema){
         List<Float> chosenOnes=new ArrayList<>();
-        Collections.sort(population, Comparator.comparing(SomeMethods::fun));
+        if(extrema==Extrema.Minimum)
+            Collections.sort(population, Comparator.comparing(SomeMethods::fun));
+        else
+            Collections.sort(population, Comparator.comparing(SomeMethods::fun).reversed());
         for(int i=0;i<chosenAmount;i++)
             chosenOnes.add(population.get(i));
         return chosenOnes;

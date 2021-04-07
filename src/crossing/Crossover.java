@@ -1,5 +1,5 @@
 package crossing;
 
 public enum Crossover {
-    OnePoint,TwoPoint,Homogeneours
+    OnePoint,TwoPoint, Homogeneous
 }

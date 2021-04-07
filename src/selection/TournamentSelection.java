@@ -1,4 +1,5 @@
 package selection;
+import comparing.Extrema;
 import someMethods.SomeMethods;
 
 import java.util.ArrayList;
@@ -13,12 +14,15 @@ public class TournamentSelection implements ISelection {
     }
 
     @Override
-    public List<Float> select(List<Float> population){
+    public List<Float> select(List<Float> population, Extrema extrema){
         float selectionBorder=1.0f*population.size()/numberOfGroups;
         List<Float> chosenOnes=new ArrayList<>();
         for(float i=0;i<population.size();i+=selectionBorder)
         {
-            chosenOnes.add(findMin((int)i, (int)(i+selectionBorder), population));
+            if(extrema==Extrema.Minimum)
+                chosenOnes.add(findMin((int)i, (int)(i+selectionBorder), population));
+            else
+                chosenOnes.add(findMax((int)i, (int)(i+selectionBorder), population));
         }
         return chosenOnes;
     }
@@ -30,12 +34,27 @@ public class TournamentSelection implements ISelection {
         float minValue=Float.MAX_VALUE;
         for(int i=a;i<b;i++)
         {
-            if(SomeMethods.fun(population.get(i))<minValue)
+            if(min== Float.MAX_VALUE||SomeMethods.fun(population.get(i))<minValue)
             {
                 min=population.get(i);
                 minValue= SomeMethods.fun(population.get(i));
             }
         }
         return min;
+    }
+
+    float findMax(int a, int b, List<Float> population)
+    {
+        float max=Float.MIN_VALUE;
+        float maxValue=Float.MIN_VALUE;
+        for(int i=a;i<b;i++)
+        {
+            if(max== Float.MIN_VALUE||SomeMethods.fun(population.get(i))>maxValue)
+            {
+                max=population.get(i);
+                maxValue= SomeMethods.fun(population.get(i));
+            }
+        }
+        return max;
     }
 }
