@@ -21,6 +21,7 @@ public class GeneticAlgorithm {
     int populationAmount;
     List<Float> population;
     float epochsNumber;
+    int chosenAmount;
     IExtrema extrema;
     Extrema chosenExtrema;
     ISelection selection;
@@ -32,11 +33,12 @@ public class GeneticAlgorithm {
 
     public GeneticAlgorithm(int populationAmount, float epochsNumber,
                             Extrema extrema,
-                            Selection selection,
+                            Selection selection, int chosenAmount,
                             Crossover crossover, int crossoverProbability,
                             Mutation mutation, int mutationProbability, int inversionProbability, boolean isEliteStrategyEnabled) {
         this.populationAmount = populationAmount;
         this.epochsNumber = epochsNumber;
+        this.chosenAmount=chosenAmount;
         generatePopulation();
         extremaChoice(extrema);
         selectionChoice(selection);
@@ -125,13 +127,13 @@ public class GeneticAlgorithm {
     void selectionChoice(Selection selection) {
         switch (selection) {
             case Best:
-                this.selection = new BestSelection(5);
+                this.selection = new BestSelection(chosenAmount);
                 break;
             case Roulette:
-                this.selection = new RouletteSelection(5);
+                this.selection = new RouletteSelection(chosenAmount);
                 break;
             case Tournament:
-                this.selection = new TournamentSelection(5);
+                this.selection = new TournamentSelection(chosenAmount);
         }
     }
 

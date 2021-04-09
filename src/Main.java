@@ -9,6 +9,7 @@ import mutation.Mutation;
 import mutation.OnePointMutation;
 import selection.BestSelection;
 import selection.ISelection;
+import selection.RouletteSelection;
 import selection.Selection;
 import someMethods.FloatToBytes;
 import someMethods.SomeMethods;
@@ -23,9 +24,9 @@ public class Main {
     }
 
     public static void testGenetic() {
-        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(10, 50,
-                Extrema.Minimum,
-                Selection.Best,
+        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(30, 50,
+                Extrema.Maximum,
+                Selection.Roulette, 5,
                 Crossover.Homogeneous, 90,
                 Mutation.Border, 10, 10, true);
         geneticAlgorithm.run();
@@ -60,10 +61,10 @@ public class Main {
 
     public static void testSelection() {
         FloatToBytes ftp = new FloatToBytes(-10, 10);
-        ISelection sel = new BestSelection(4);
+        ISelection sel = new RouletteSelection(5);
         List<Float> population = new ArrayList<>();
-        population.addAll(Arrays.asList(-4.5f, -10f, 4.3f, 1f, -5f, 6f, -3.2f, 5.0f, -4f, 5.4f));
-        System.out.println(SomeMethods.get(sel.select(population,Extrema.Minimum)));
+        population.addAll(Arrays.asList(1f,2f,3f,4f,5f,6f,7f,8f,9f,10f));
+        System.out.println(SomeMethods.get(sel.select(population,Extrema.Maximum)));
     }
 
     public static void testMutation() {

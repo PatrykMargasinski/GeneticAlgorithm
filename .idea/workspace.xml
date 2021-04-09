@@ -4,19 +4,9 @@
     <list default="true" id="41341926-fbf3-4008-9aeb-578fb63efe7d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/mutation/BorderMutation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/mutation/BorderMutation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crossing/HomogeneousCrossing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/HomogeneousCrossing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crossing/ICrossover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/ICrossover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crossing/OnePointCrossing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/OnePointCrossing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crossing/TwoPointCrossing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/TwoPointCrossing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inversion/IInversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inversion/IInversion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inversion/Inversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inversion/Inversion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mutation/BorderMutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mutation/BorderMutation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mutation/IMutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mutation/IMutation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mutation/OnePointMutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mutation/OnePointMutation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mutation/TwoPointMutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mutation/TwoPointMutation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/selection/RouletteSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/selection/RouletteSelection.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
