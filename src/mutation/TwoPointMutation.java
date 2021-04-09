@@ -13,7 +13,8 @@ public class TwoPointMutation implements IMutation {
     }
 
     @Override
-    public void mutate(StringBuilder sb1) {
+    public String mutate(String s1) {
+        StringBuilder sb1=new StringBuilder(s1);
         int p1 = generateRandomPoint(sb1.length());
         int p2 = generateRandomPoint(sb1.length());
         if (SomeMethods.checkProbability(probability) == true) {
@@ -27,5 +28,6 @@ public class TwoPointMutation implements IMutation {
             else temp = '0';
             sb1.setCharAt(p2, temp);
         }
+        return sb1.toString();
     }
 }

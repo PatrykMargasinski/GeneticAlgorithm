@@ -24,7 +24,7 @@ public class Main {
 
     public static void testGenetic() {
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(10, 50,
-                Extrema.Maximum,
+                Extrema.Minimum,
                 Selection.Best,
                 Crossover.Homogeneous, 90,
                 Mutation.Border, 10, 10, true);
@@ -34,27 +34,26 @@ public class Main {
     public static void testInversion() {
         FloatToBytes ftp = new FloatToBytes(-10, 10);
         float f1 = 3f, f2 = -6f;
-        StringBuilder s1 = new StringBuilder(ftp.floatToBinary(f1));
+        String s1 = ftp.floatToBinary(f1);
         System.out.println("Value: " + f1 + "\tString: " + s1);
         IInversion inversion = new Inversion(50);
-        inversion.invert(s1);
+        f1 = ftp.binaryToFloat(inversion.invert(s1));
         System.out.println("\nAfter:");
-        f1 = ftp.binaryToFloat(s1.toString());
         System.out.println("Value: " + f1 + "\tString: " + s1);
     }
 
     public static void testCrossovers() {
         FloatToBytes ftp = new FloatToBytes(-10, 10);
         float f1 = 3f, f2 = -6f;
-        StringBuilder s1 = new StringBuilder(ftp.floatToBinary(f1));
-        StringBuilder s2 = new StringBuilder(ftp.floatToBinary(f2));
+        String s1 = ftp.floatToBinary(f1);
+        String s2 = ftp.floatToBinary(f2);
         System.out.println("Value: " + f1 + "\tString: " + s1);
         System.out.println("Value: " + f2 + "\tString: " + s2);
         ICrossover crossover = new OnePointCrossing(24, 50, true);
-        crossover.cross(s1, s2);
+        String[] childs=crossover.cross(s1, s2);
         System.out.println("\nAfter:");
-        f1 = ftp.binaryToFloat(s1.toString());
-        f2 = ftp.binaryToFloat(s2.toString());
+        f1 = ftp.binaryToFloat(childs[0]);
+        f2 = ftp.binaryToFloat(childs[1]);
         System.out.println("Value: " + f1 + "\tString: " + s1);
         System.out.println("Value: " + f2 + "\tString: " + s2);
     }
@@ -70,12 +69,11 @@ public class Main {
     public static void testMutation() {
         FloatToBytes ftp = new FloatToBytes(-10, 10);
         float f1 = 3f, f2 = -6f;
-        StringBuilder s1 = new StringBuilder(ftp.floatToBinary(f1));
+        String s1 = ftp.floatToBinary(f1);
         System.out.println("Value: " + f1 + "\tString: " + s1);
         IMutation mutation = new OnePointMutation(50);
-        mutation.mutate(s1);
         System.out.println("\nAfter:");
-        f1 = ftp.binaryToFloat(s1.toString());
+        f1 = ftp.binaryToFloat(mutation.mutate(s1));
         System.out.println("Value: " + f1 + "\tString: " + s1);
     }
 }

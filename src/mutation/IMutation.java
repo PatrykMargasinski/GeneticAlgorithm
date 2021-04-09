@@ -1,5 +1,5 @@
 package mutation;
 
 public interface IMutation {
-    void mutate(StringBuilder sb1);
+    String mutate(String sb1);
 }

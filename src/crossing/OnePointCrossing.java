@@ -15,7 +15,9 @@ public class OnePointCrossing implements ICrossover {
     }
 
     @Override
-    public void cross(StringBuilder sb1, StringBuilder sb2) {
+    public String[] cross(String s1, String s2) {
+        StringBuilder sb1=new StringBuilder(s1);
+        StringBuilder sb2=new StringBuilder(s2);
         for(int i=0;i<sb1.length();i++)
         {
             boolean crossCondition=startWithTheLeft?i<=point:i>=point;
@@ -25,5 +27,6 @@ public class OnePointCrossing implements ICrossover {
                 sb2.setCharAt(i, temp);
             }
         }
+        return new String[]{sb1.toString(),sb2.toString()};
     }
 }

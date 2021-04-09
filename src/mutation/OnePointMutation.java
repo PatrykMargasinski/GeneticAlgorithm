@@ -13,7 +13,8 @@ public class OnePointMutation implements IMutation {
     }
 
     @Override
-    public void mutate(StringBuilder sb1) {
+    public String mutate(String s1) {
+        StringBuilder sb1=new StringBuilder(s1);
         int point = generateRandomPoint(sb1.length());
         if (SomeMethods.checkProbability(probability) == true) {
             char temp = sb1.charAt(point);
@@ -21,6 +22,7 @@ public class OnePointMutation implements IMutation {
             else temp = '0';
             sb1.setCharAt(point, temp);
         }
+        return sb1.toString();
     }
 
 }

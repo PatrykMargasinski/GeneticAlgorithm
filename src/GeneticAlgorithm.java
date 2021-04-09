@@ -67,29 +67,29 @@ public class GeneticAlgorithm {
                 List<Integer> range = IntStream.range(0, chosenOnesCopy.size()).boxed()
                         .collect(Collectors.toCollection(ArrayList::new));
                 Collections.shuffle(range);
-                StringBuilder childOne = new StringBuilder(converter.floatToBinary(chosenOnesCopy.get(range.remove(0))));
-                StringBuilder childTwo = new StringBuilder(converter.floatToBinary(chosenOnesCopy.get(range.remove(0))));
-                crossover.cross(
-                        childOne,
-                        childTwo
+                String parentOne =converter.floatToBinary(chosenOnesCopy.get(range.remove(0)));
+                String parentTwo = converter.floatToBinary(chosenOnesCopy.get(range.remove(0)));
+                String[] childs=crossover.cross(
+                        parentOne,
+                        parentTwo
                 );
-                if (random.nextInt(2) == 0) population.add(converter.binaryToFloat(childOne.toString()));
-                else population.add(converter.binaryToFloat(childTwo.toString()));
+                if (random.nextInt(2) == 0) population.add(converter.binaryToFloat(childs[0]));
+                else population.add(converter.binaryToFloat(childs[1]));
             }
 
             //mutation
             for (int j = 0; j < population.size(); j++) {
                 float mutatingNumber = population.get(j);
-                StringBuilder mutatingNumberBinary = new StringBuilder(converter.floatToBinary(mutatingNumber));
-                mutation.mutate(mutatingNumberBinary);
-                population.set(j, converter.binaryToFloat(mutatingNumberBinary.toString()));
+                String mutatingNumberBinary = converter.floatToBinary(mutatingNumber);
+                String mutated=mutation.mutate(mutatingNumberBinary);
+                population.set(j, converter.binaryToFloat(mutated));
             }
             //inversion
             for (int j = 0; j < population.size(); j++) {
                 float invertingNumber = population.get(j);
-                StringBuilder invertingNumberBinary = new StringBuilder(converter.floatToBinary(invertingNumber));
-                inversion.invert(invertingNumberBinary);
-                population.set(j, converter.binaryToFloat(invertingNumberBinary.toString()));
+                String invertingNumberBinary = converter.floatToBinary(invertingNumber);
+                String inverted=inversion.invert(invertingNumberBinary);
+                population.set(j, converter.binaryToFloat(inverted));
             }
             //elite strategy: add best to population
             if (isEliteStrategyEnabled) {

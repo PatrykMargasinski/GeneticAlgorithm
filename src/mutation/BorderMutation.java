@@ -14,7 +14,8 @@ public class BorderMutation implements IMutation {
     }
 
     @Override
-    public void mutate(StringBuilder sb1) {
+    public String mutate(String s1) {
+        StringBuilder sb1=new StringBuilder(s1);
         int borderIndex = lastOrFirst(sb1.length() - 1);
         if (SomeMethods.checkProbability(probability)) {
             char temp = sb1.charAt(borderIndex);
@@ -22,6 +23,7 @@ public class BorderMutation implements IMutation {
             else temp = '0';
             sb1.setCharAt(borderIndex, temp);
         }
+        return sb1.toString();
     }
 
     private int lastOrFirst(int lastIndex) {

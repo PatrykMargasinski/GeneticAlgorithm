@@ -3,5 +3,5 @@ package crossing;
 import java.util.Random;
 
 public interface ICrossover {
-    void cross(StringBuilder sb1, StringBuilder sb2);
+    String[] cross(String sb1, String sb2);
 }

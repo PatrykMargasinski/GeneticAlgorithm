@@ -14,7 +14,8 @@ public class Inversion implements IInversion {
     }
 
     @Override
-    public void invert(StringBuilder sb1) {
+    public String invert(String s1) {
+        StringBuilder sb1=new StringBuilder(s1);
         if (SomeMethods.checkProbability(probability)) {
             int start = generateRandomPoint(sb1.length());
             int end = generateRandomPoint(sb1.length());
@@ -31,5 +32,6 @@ public class Inversion implements IInversion {
                 }
             }
         }
+        return sb1.toString();
     }
 }
