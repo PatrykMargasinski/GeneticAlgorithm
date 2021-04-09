@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
 
 public class GeneticAlgorithm {
     int populationAmount;
-    List<Float> population;
+    List<Float[]> population;
     float epochsNumber;
     int chosenAmount;
     IExtrema extrema;
@@ -54,44 +54,76 @@ public class GeneticAlgorithm {
         Random random = new Random();
         for (int i = 0; i < epochsNumber; i++) {
             //save best from population
-            Float best = extrema.getExtrema(population);
+            Float[] best = extrema.getExtrema(population);
 
             System.out.println("Epoka: " + i);
             System.out.println("Populacja: " + SomeMethods.get(population));
-            System.out.println("Najlepszy: " + best);
+            System.out.println("Najlepszy osobnik: " + SomeMethods.getOne(best));
+            System.out.println("Wartość najlepszego: " + SomeMethods.fun(best));
             System.out.println("\n\n");
             //selection
             population = selection.select(population,chosenExtrema);
 
             //crossing
-            List<Float> chosenOnesCopy = new ArrayList<>(population);
+            List<Float[]> chosenOnesCopy = new ArrayList<>(population);
             while (population.size() < populationAmount - 1) {
                 List<Integer> range = IntStream.range(0, chosenOnesCopy.size()).boxed()
                         .collect(Collectors.toCollection(ArrayList::new));
                 Collections.shuffle(range);
-                String parentOne =converter.floatToBinary(chosenOnesCopy.get(range.remove(0)));
-                String parentTwo = converter.floatToBinary(chosenOnesCopy.get(range.remove(0)));
-                String[] childs=crossover.cross(
-                        parentOne,
-                        parentTwo
+                int removed=range.remove(0);
+                String[] parentOne =new String[]{
+                        converter.floatToBinary(chosenOnesCopy.get(removed)[0]),
+                        converter.floatToBinary(chosenOnesCopy.get(removed)[1])
+                        };
+                removed=range.remove(0);
+                String[] parentTwo =new String[]{
+                        converter.floatToBinary(chosenOnesCopy.get(removed)[0]),
+                        converter.floatToBinary(chosenOnesCopy.get(removed)[1])
+                };
+
+                String[] firstHalf=crossover.cross(
+                        parentOne[0],
+                        parentTwo[0]
                 );
-                if (random.nextInt(2) == 0) population.add(converter.binaryToFloat(childs[0]));
-                else population.add(converter.binaryToFloat(childs[1]));
+
+                String[] secondHalf=crossover.cross(
+                        parentOne[1],
+                        parentTwo[1]
+                );
+
+                if (random.nextInt(2) == 0) population.add(
+                        new Float[]{
+                                converter.binaryToFloat(firstHalf[0]),
+                                converter.binaryToFloat(secondHalf[0])
+                        }
+                );
+                else population.add(
+                        new Float[]{
+                                converter.binaryToFloat(firstHalf[1]),
+                                converter.binaryToFloat(secondHalf[1])
+                        });
+
             }
 
             //mutation
             for (int j = 0; j < population.size(); j++) {
-                float mutatingNumber = population.get(j);
-                String mutatingNumberBinary = converter.floatToBinary(mutatingNumber);
+                Float[] mutatingNumber = population.get(j);
+                String mutatingNumberBinary = converter.floatToBinary(mutatingNumber[0])+converter.floatToBinary(mutatingNumber[1]);
                 String mutated=mutation.mutate(mutatingNumberBinary);
-                population.set(j, converter.binaryToFloat(mutated));
+                population.set(j, new Float[]{
+                        converter.binaryToFloat(mutatingNumberBinary.substring(0,24)),
+                        converter.binaryToFloat(mutatingNumberBinary.substring(24,48))
+                });
             }
             //inversion
             for (int j = 0; j < population.size(); j++) {
-                float invertingNumber = population.get(j);
-                String invertingNumberBinary = converter.floatToBinary(invertingNumber);
+                Float[] invertingNumber = population.get(j);
+                String invertingNumberBinary = converter.floatToBinary(invertingNumber[0])+converter.floatToBinary(invertingNumber[1]);
                 String inverted=inversion.invert(invertingNumberBinary);
-                population.set(j, converter.binaryToFloat(inverted));
+                population.set(j, new Float[]{
+                        converter.binaryToFloat(inverted.substring(0,24)),
+                        converter.binaryToFloat(inverted.substring(24,48))
+                });
             }
             //elite strategy: add best to population
             if (isEliteStrategyEnabled) {
@@ -104,7 +136,7 @@ public class GeneticAlgorithm {
         population = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < populationAmount; i++) {
-            population.add(random.nextFloat() * 5 + 5);
+            population.add(new Float[]{random.nextFloat() * 5 + 5,random.nextFloat() * 5 + 5});
             System.out.println("Added: " + population.get(population.size() - 1));
         }
         SomeMethods.print(population);

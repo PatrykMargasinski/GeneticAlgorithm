@@ -14,9 +14,9 @@ public class TournamentSelection implements ISelection {
     }
 
     @Override
-    public List<Float> select(List<Float> population, Extrema extrema){
+    public List<Float[]> select(List<Float[]> population, Extrema extrema){
         float selectionBorder=1.0f*population.size()/numberOfGroups;
-        List<Float> chosenOnes=new ArrayList<>();
+        List<Float[]> chosenOnes=new ArrayList<>();
         for(float i=0;i<population.size();i+=selectionBorder)
         {
             if(extrema==Extrema.Minimum)
@@ -28,13 +28,13 @@ public class TournamentSelection implements ISelection {
     }
 
     //znajdowanie najlepszego osobnika w grupie. Grupa to osobniki od indeksu 'a' do 'b'
-    float findMin(int a, int b, List<Float> population)
+    Float[] findMin(int a, int b, List<Float[]> population)
     {
-        float min=Float.MAX_VALUE;
+        Float[] min=null;
         float minValue=Float.MAX_VALUE;
         for(int i=a;i<b;i++)
         {
-            if(min== Float.MAX_VALUE||SomeMethods.fun(population.get(i))<minValue)
+            if(min== null||SomeMethods.fun(population.get(i))<minValue)
             {
                 min=population.get(i);
                 minValue= SomeMethods.fun(population.get(i));
@@ -43,13 +43,13 @@ public class TournamentSelection implements ISelection {
         return min;
     }
 
-    float findMax(int a, int b, List<Float> population)
+    Float[] findMax(int a, int b, List<Float[]> population)
     {
-        float max=Float.MIN_VALUE;
+        Float[] max=null;
         float maxValue=Float.MIN_VALUE;
         for(int i=a;i<b;i++)
         {
-            if(max== Float.MIN_VALUE||SomeMethods.fun(population.get(i))>maxValue)
+            if(max== null||SomeMethods.fun(population.get(i))>maxValue)
             {
                 max=population.get(i);
                 maxValue= SomeMethods.fun(population.get(i));

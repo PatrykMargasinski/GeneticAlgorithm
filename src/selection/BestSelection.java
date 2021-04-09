@@ -17,8 +17,8 @@ public class BestSelection implements ISelection {
     }
 
     @Override
-    public List<Float> select(List<Float> population, Extrema extrema){
-        List<Float> chosenOnes=new ArrayList<>();
+    public List<Float[]> select(List<Float[]> population, Extrema extrema){
+        List<Float[]> chosenOnes=new ArrayList<>();
         if(extrema==Extrema.Minimum)
             Collections.sort(population, Comparator.comparing(SomeMethods::fun));
         else

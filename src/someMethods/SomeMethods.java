@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 public class SomeMethods {
-    public static Float fun(float x)
+    public static Float fun(Float[] x)
     {
-        return (x-1)*(x-1)+2;
+        return x[0]*x[0]+x[1]*x[1];
     }
 
     //jest okreslona szansa na mutacje lub krzyżowanie. Tutaj jest metoda sprawdzająca, czy strzął o prawdopodobieństwie
@@ -35,19 +35,24 @@ public class SomeMethods {
 
 
     //do wypisywania listy
-    public static String get(List<Float> list)
+    public static String get(List<Float[]> list)
     {
         StringBuilder str=new StringBuilder("");
-        for(float f : list)
+        for(Float[] f : list)
         {
-            str.append(f+" ");
+            str.append(getOne(f)+" ");
         }
         return str.toString();
     }
 
-    public static void print(List<Float> list)
+    public static void print(List<Float[]> list)
     {
         System.out.println(get(list));
+    }
+
+    public static String getOne(Float[] f)
+    {
+        return "["+f[0]+","+f[1]+"]";
     }
     //generowanie randomowego inta z przedziału 0,length
     public static int generateRandomPoint(int length){

@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static java.lang.Math.abs;
-
 //wybor losowy. Im lepszy osobnik - tym ma wieksze szanse
 public class RouletteSelection implements ISelection {
     int chosenAmount;//ile osobnikow ma byc wybranych
@@ -19,8 +17,8 @@ public class RouletteSelection implements ISelection {
     }
 
     @Override
-    public List<Float> select(List<Float> population, Extrema extrema) {
-        List<Float> chosenOnes=new ArrayList<>();
+    public List<Float[]> select(List<Float[]> population, Extrema extrema) {
+        List<Float[]> chosenOnes=new ArrayList<>();
         for(int i=0;i<chosenAmount;i++)
         {
             probabilities=new ArrayList<>();
@@ -34,41 +32,38 @@ public class RouletteSelection implements ISelection {
         return chosenOnes;
     }
 
-    public void calculateProbabilitiesForMaximum(List<Float> population)
+    public void calculateProbabilitiesForMaximum(List<Float[]> population)
     {
-        List<Float> functionValues=new ArrayList<>(population);
-        for(int i=0;i<functionValues.size();i++)
-            functionValues.set(i,SomeMethods.fun(functionValues.get(i)));
+        List<Float> functionValues=new ArrayList<>();
+        for(int i=0;i<population.size();i++)
+            functionValues.add(SomeMethods.fun(population.get(i)));
         float minValue=functionValues.stream().min(Float::compareTo).orElse(0f);
-        if(minValue<0f)
+        if(minValue<=0f)
             for(int i=0;i<functionValues.size();i++)
                 functionValues.set(i,functionValues.get(i)+minValue);
 
         float sum=functionValues.stream().reduce(0f,Float::sum);
-        float prevProbSum=0f;
         for(int i=0;i<functionValues.size();i++)
         {
-            prevProbSum+=functionValues.get(i)/sum*100;
-            probabilities.add(prevProbSum);
+            float prob=functionValues.get(i)/sum*100;
+            probabilities.add(prob);
         }
     }
 
-    public void calculateProbabilitiesForMinimum(List<Float> population)
+    public void calculateProbabilitiesForMinimum(List<Float[]> population)
     {
-        List<Float> functionValues=new ArrayList<>(population);
-        for(int i=0;i<functionValues.size();i++)
-            functionValues.set(i,SomeMethods.fun(functionValues.get(i)));
+        List<Float> functionValues=new ArrayList<>();
+        for(int i=0;i<population.size();i++)
+            functionValues.add(SomeMethods.fun(population.get(i)));
         float minValue=functionValues.stream().min(Float::compareTo).orElse(0f);
         if(minValue<0f)
             for(int i=0;i<functionValues.size();i++)
                 functionValues.set(i,functionValues.get(i)+minValue);
 
         float sum=functionValues.stream().reduce(0f,Float::sum);
-        float prevProbSum=0f;
         for(int i=0;i<functionValues.size();i++)
         {
             float prob=(sum-functionValues.get(i))/sum*100;
-            prevProbSum+=prob;
             probabilities.add(prob);
         }
     }
