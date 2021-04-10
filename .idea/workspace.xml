@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41341926-fbf3-4008-9aeb-578fb63efe7d" name="Default Changelist" comment="">
+    <list default="true" id="41341926-fbf3-4008-9aeb-578fb63efe7d" name="Default Changelist" comment="fixed logging + added logging date">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/selection/RouletteSelection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/selection/RouletteSelection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled104/someMethods/SomeMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/someMethods/SomeMethods.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/selection/RouletteSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/selection/RouletteSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithmForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithmForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithmForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithmForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/someMethods/SomeMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/someMethods/SomeMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled104.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled104.iml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,40 +32,48 @@
   <component name="ProjectId" id="1q0yMvJBLVtmx37ZwsjOgMzf1gM" />
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="GeneticAlgorithmForm" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="GeneticAlgorithmForm" />
       <module name="untitled104" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GeneticAlgorithmForm" />
       </list>
     </recent_temporary>
   </component>
@@ -87,12 +95,25 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GeneticAlgorithmForm.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/GeneticAlgorithm$Main.ic" NAME="Main Coverage Results" MODIFIED="1617628668903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

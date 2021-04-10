@@ -87,7 +87,13 @@ public class SomeMethods {
     {
         return fun(f)+"";
     }
-
+    public static float getAverageValue(List<Float[]> list){
+        float sum=0f;
+        for(Float[] value : list){
+            sum=sum+fun(value);
+        }
+        return sum/ list.size();
+    }
     //generowanie randomowego inta z przedziału 0,length
     public static int generateRandomPoint(int length){
         Random random = new Random();

@@ -6,6 +6,7 @@ import crossing.*;
 import inversion.IInversion;
 import inversion.Inversion;
 import mutation.*;
+import org.jfree.data.xy.XYSeries;
 import selection.*;
 import someMethods.FloatToBytes;
 import someMethods.SomeMethods;
@@ -39,6 +40,8 @@ public class GeneticAlgorithm {
     boolean isEliteStrategyEnabled;
     JTextArea resultTextArea;
     long createdMillis;
+    XYSeries firstPlotXYSeries;
+    XYSeries secondPlotXYSeries;
 
     static Logger logger = Logger.getLogger("GeneticAlgorithm");
 
@@ -63,6 +66,8 @@ public class GeneticAlgorithm {
     public void run() {
         setupLogs();
         Random random = new Random();
+        firstPlotXYSeries = new XYSeries("Wartość funkcji");
+        secondPlotXYSeries = new XYSeries("Wartość funkcji");
         for (int i = 0; i < epochsNumber; i++) {
             //save best from population
             Float[] best = extrema.getExtrema(population);
@@ -72,7 +77,8 @@ public class GeneticAlgorithm {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
+            firstPlotXYSeries.add(i, SomeMethods.fun(best));
+            secondPlotXYSeries.add(i,SomeMethods.getAverageValue(population));
             //selection
             population = selection.select(population, chosenExtrema);
 
@@ -144,6 +150,12 @@ public class GeneticAlgorithm {
         }
     }
 
+    public XYSeries getFirstPlotXYSeries() {
+        return firstPlotXYSeries;
+    }
+    public XYSeries getSecondPlotXYSeries() {
+        return secondPlotXYSeries;
+    }
     private void setupLogs() {
         FileHandler fileHandler;
         createdMillis = System.currentTimeMillis();
