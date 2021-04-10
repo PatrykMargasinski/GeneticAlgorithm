@@ -41,9 +41,7 @@ public class GeneticAlgorithmForm {
     private JLabel mutationProbLabel;
     private JSpinner inversionProbSpinner;
     private JLabel inversionLabel;
-    private JLabel inversionProbLabel;
     private JLabel eliteStrategyLabel;
-    private JComboBox inversionComboBox;
     private JComboBox eliteStrategyComboBox;
     private JTextArea resultTextArea;
     private JPanel plotPanel;
@@ -87,6 +85,16 @@ public class GeneticAlgorithmForm {
             XYDataset dataset = createDataset(geneticAlgorithm.getSecondPlotXYSeries());
 
             JFreeChart chart = createChart(dataset, "Średnia wartość funkcji", "Iteracja", "Wartość funkcji");
+
+            ChartPanel cp = new ChartPanel(chart);
+            plotPanel.add(cp, BorderLayout.CENTER);
+            plotPanel.validate();
+        });
+        plot3Button.addActionListener(e -> {
+            plotPanel.setLayout(new BorderLayout());
+            XYDataset dataset = createDataset(geneticAlgorithm.getThirdPlotXYSeries());
+
+            JFreeChart chart = createChart(dataset, "Odchylenie standardowe od kolejnej iteracji", "Iteracja", "Odchylenie standardowe");
 
             ChartPanel cp = new ChartPanel(chart);
             plotPanel.add(cp, BorderLayout.CENTER);
