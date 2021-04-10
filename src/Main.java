@@ -26,7 +26,7 @@ public class Main {
     public static void testGenetic() {
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(30, 500,
                 Extrema.Minimum,
-                Selection.Roulette, 5,
+                Selection.Best, 5,
                 Crossover.Homogeneous, 90,
                 Mutation.Border, 10, 10, true);
         geneticAlgorithm.run();

@@ -58,6 +58,7 @@ public class GeneticAlgorithm {
 
             System.out.println("Epoka: " + i);
             System.out.println("Populacja: " + SomeMethods.get(population));
+            System.out.println("Wartości: " + SomeMethods.getValues(population));
             System.out.println("Najlepszy osobnik: " + SomeMethods.getOne(best));
             System.out.println("Wartość najlepszego: " + SomeMethods.fun(best));
             System.out.println("\n\n");
@@ -137,7 +138,7 @@ public class GeneticAlgorithm {
         Random random = new Random();
         for (int i = 0; i < populationAmount; i++) {
             population.add(new Float[]{random.nextFloat() * 5 + 5,random.nextFloat() * 5 + 5});
-            System.out.println("Added: " + population.get(population.size() - 1));
+            System.out.println("Added: " + SomeMethods.getOne(population.get(population.size() - 1)));
         }
         SomeMethods.print(population);
     }
