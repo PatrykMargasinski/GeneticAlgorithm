@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
+import java.util.logging.Handler;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -37,7 +38,9 @@ public class GeneticAlgorithm {
     FloatToBytes converter = new FloatToBytes(-10, 10);
     boolean isEliteStrategyEnabled;
     JTextArea resultTextArea;
-    static final Logger logger = Logger.getLogger("GeneticAlgorithm");
+    long createdMillis;
+
+    static Logger logger = Logger.getLogger("GeneticAlgorithm");
 
     public GeneticAlgorithm(int populationAmount, float epochsNumber,
                             Extrema extrema,
@@ -143,11 +146,12 @@ public class GeneticAlgorithm {
 
     private void setupLogs() {
         FileHandler fileHandler;
-
+        createdMillis = System.currentTimeMillis();
+        ConsoleHandler consoleHandler;
         try {
             // This block configure the logger with handler and formatter
-            fileHandler = new FileHandler("logs/sample.log");
-            ConsoleHandler consoleHandler = new ConsoleHandler();
+            fileHandler = new FileHandler("logs/geneticAlgorithm.log");
+            consoleHandler = new ConsoleHandler();
             logger.setUseParentHandlers(false);
             CustomRecordFormatter formatter = new CustomRecordFormatter();
             fileHandler.setFormatter(formatter);
@@ -167,10 +171,23 @@ public class GeneticAlgorithm {
         logger.info("Najlepszy osobnik: " + SomeMethods.getOne(best));
         logger.info("Wartość najlepszego: " + SomeMethods.fun(best));
         logger.info("\n\n");
+
         if (i + 1 == epochsNumber) {
+            logger.info("Czas trwania programu: " + getAgeInMillis() + " ms");
             resultTextArea.setText("Najlepszy osobnik: " + SomeMethods.getOne(best) + "\n" +
-                    "Wartość najlepszego: " + SomeMethods.fun(best));
+                    "Wartość najlepszego: " + SomeMethods.fun(best) + "\n" +
+                    "Czas trwania programu: " + getAgeInMillis() + " ms");
+            Handler[] handlers = logger.getHandlers();
+            for (Handler handler : handlers) {
+                if (handler instanceof ConsoleHandler) {
+                    logger.removeHandler(handler);
+                }
+            }
         }
+    }
+
+    public long getAgeInMillis() {
+        return System.currentTimeMillis() - createdMillis;
     }
 
     void generatePopulation() {
