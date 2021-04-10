@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class SomeMethods {
 
-    public static Float dfun(Float[] x) {
+    public static Float fun(Float[] x) {
         double sum1 = 0.0;
         double sum2 = 0.0;
         sum1 += Math.pow(x[0], 2);
@@ -19,7 +19,7 @@ public class SomeMethods {
                 Math.exp(sum2 / (2f)) + 20.0f + Math.exp(1));
     }
 
-    public static Float fun(Float[] x)
+    public static Float testFun(Float[] x)
     {
         return x[0]*x[0]+x[1]*x[1];
     }
@@ -94,6 +94,18 @@ public class SomeMethods {
         }
         return sum/ list.size();
     }
+
+    public static float getStandardDeviation(List<Float[]> list)
+    {
+        float average=getAverageValue(list);
+        float sum=0;
+        for(Float[] x : list)
+        {
+            sum+=Math.pow(fun(x)-average,2);
+        }
+        return (float) Math.sqrt(sum/list.size());
+    }
+
     //generowanie randomowego inta z przedziału 0,length
     public static int generateRandomPoint(int length){
         Random random = new Random();

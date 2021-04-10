@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        testGenetic();
+        testDeviation();
     }
 
     public static void testGenetic() {
@@ -30,6 +30,13 @@ public class Main {
                 Crossover.Homogeneous, 90,
                 Mutation.Border, 10, 10, 0);
         geneticAlgorithm.run();
+    }
+
+    public static void testDeviation()
+    {
+        List<Float[]>pop=new ArrayList<>();
+        pop.add(new Float[]{1f,1f});pop.add(new Float[]{1f,1f});pop.add(new Float[]{1f,1f});pop.add(new Float[]{1f,2f});
+        System.out.println(SomeMethods.getStandardDeviation(pop));
     }
 
     public static void testSelection() {
