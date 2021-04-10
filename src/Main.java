@@ -32,4 +32,17 @@ public class Main {
         geneticAlgorithm.run();
     }
 
+    public static void testSelection() {
+        ISelection sel=new RouletteSelection(2);
+        List<Float[]>pop=new ArrayList<>();
+        pop.add(new Float[]{1f,1f});pop.add(new Float[]{2f,2f});pop.add(new Float[]{3f,3f});pop.add(new Float[]{4f,4f});
+        pop.add(new Float[]{5f,5f});pop.add(new Float[]{6f,6f});pop.add(new Float[]{7f,7f});pop.add(new Float[]{8f,8f});
+        SomeMethods.print(pop);
+        SomeMethods.printValues(pop);
+        List<Float[]> wynik=sel.select(pop,Extrema.Maximum);
+        System.out.println("\n\n\n\n");
+        SomeMethods.print(wynik);
+        SomeMethods.printValues(wynik);
+    }
+
 }

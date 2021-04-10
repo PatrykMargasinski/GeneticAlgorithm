@@ -54,7 +54,7 @@ public class RouletteSelection implements ISelection {
     {
         List<Float> functionValues=new ArrayList<>();
         for(int i=0;i<population.size();i++)
-            functionValues.add(SomeMethods.fun(population.get(i)));
+            functionValues.add(1f/SomeMethods.fun(population.get(i)));
         float minValue=functionValues.stream().min(Float::compareTo).orElse(0f);
         if(minValue<0f)
             for(int i=0;i<functionValues.size();i++)
@@ -63,13 +63,14 @@ public class RouletteSelection implements ISelection {
         float sum=functionValues.stream().reduce(0f,Float::sum);
         for(int i=0;i<functionValues.size();i++)
         {
-            float prob=(sum-functionValues.get(i))/sum*100;
+            float prob=(functionValues.get(i))/sum*100;
             probabilities.add(prob);
         }
     }
 
     public int getRandomValueIndex(float prob)
     {
+
         float sum=0;
         int i=0;
         for(Float f : probabilities)
