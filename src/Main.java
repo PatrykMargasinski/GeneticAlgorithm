@@ -28,7 +28,7 @@ public class Main {
                 Extrema.Minimum,
                 Selection.Best, 5,
                 Crossover.Homogeneous, 90,
-                Mutation.Border, 10, 10, true);
+                Mutation.Border, 10, 10, 0);
         geneticAlgorithm.run();
     }
 

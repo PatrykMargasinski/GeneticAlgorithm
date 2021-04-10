@@ -10,10 +10,16 @@ import selection.*;
 import someMethods.FloatToBytes;
 import someMethods.SomeMethods;
 
+import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -30,41 +36,42 @@ public class GeneticAlgorithm {
     IInversion inversion;
     FloatToBytes converter = new FloatToBytes(-10, 10);
     boolean isEliteStrategyEnabled;
+    JTextArea resultTextArea;
+    static final Logger logger = Logger.getLogger("GeneticAlgorithm");
 
     public GeneticAlgorithm(int populationAmount, float epochsNumber,
                             Extrema extrema,
                             Selection selection, int chosenAmount,
                             Crossover crossover, int crossoverProbability,
-                            Mutation mutation, int mutationProbability, int inversionProbability, boolean isEliteStrategyEnabled) {
+                            Mutation mutation, int mutationProbability, int inversionProbability, int isEliteStrategyEnabled) {
         this.populationAmount = populationAmount;
         this.epochsNumber = epochsNumber;
-        this.chosenAmount=chosenAmount;
+        this.chosenAmount = chosenAmount;
         generatePopulation();
         extremaChoice(extrema);
         selectionChoice(selection);
         mutationChoice(mutation, mutationProbability);
         crossoverChoice(crossover, crossoverProbability);
         inversionChoice(inversionProbability);
-        this.isEliteStrategyEnabled = isEliteStrategyEnabled;
+        this.isEliteStrategyEnabled = isEliteStrategyEnabled == 0;
     }
 
 
     public void run() {
-
+        setupLogs();
         Random random = new Random();
         for (int i = 0; i < epochsNumber; i++) {
             //save best from population
             Float[] best = extrema.getExtrema(population);
 
-            System.out.println("Epoka: " + i);
-            System.out.println("Populacja: " + SomeMethods.get(population));
-            System.out.println("Wartości: " + SomeMethods.getValues(population));
-            System.out.println("Najlepszy osobnik: " + SomeMethods.getOne(best));
-            System.out.println("Wartość najlepszego: " + SomeMethods.fun(best));
-            System.out.println("\n\n");
+            try {
+                logCurrentIteration(i, best);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
 
             //selection
-            population = selection.select(population,chosenExtrema);
+            population = selection.select(population, chosenExtrema);
 
             //crossing
             List<Float[]> chosenOnesCopy = new ArrayList<>(population);
@@ -72,23 +79,23 @@ public class GeneticAlgorithm {
                 List<Integer> range = IntStream.range(0, chosenOnesCopy.size()).boxed()
                         .collect(Collectors.toCollection(ArrayList::new));
                 Collections.shuffle(range);
-                int removed=range.remove(0);
-                String[] parentOne =new String[]{
+                int removed = range.remove(0);
+                String[] parentOne = new String[]{
                         converter.floatToBinary(chosenOnesCopy.get(removed)[0]),
                         converter.floatToBinary(chosenOnesCopy.get(removed)[1])
-                        };
-                removed=range.remove(0);
-                String[] parentTwo =new String[]{
+                };
+                removed = range.remove(0);
+                String[] parentTwo = new String[]{
                         converter.floatToBinary(chosenOnesCopy.get(removed)[0]),
                         converter.floatToBinary(chosenOnesCopy.get(removed)[1])
                 };
 
-                String[] firstHalf=crossover.cross(
+                String[] firstHalf = crossover.cross(
                         parentOne[0],
                         parentTwo[0]
                 );
 
-                String[] secondHalf=crossover.cross(
+                String[] secondHalf = crossover.cross(
                         parentOne[1],
                         parentTwo[1]
                 );
@@ -110,21 +117,21 @@ public class GeneticAlgorithm {
             //mutation
             for (int j = 0; j < population.size(); j++) {
                 Float[] mutatingNumber = population.get(j);
-                String mutatingNumberBinary = converter.floatToBinary(mutatingNumber[0])+converter.floatToBinary(mutatingNumber[1]);
-                String mutated=mutation.mutate(mutatingNumberBinary);
+                String mutatingNumberBinary = converter.floatToBinary(mutatingNumber[0]) + converter.floatToBinary(mutatingNumber[1]);
+                String mutated = mutation.mutate(mutatingNumberBinary);
                 population.set(j, new Float[]{
-                        converter.binaryToFloat(mutatingNumberBinary.substring(0,24)),
-                        converter.binaryToFloat(mutatingNumberBinary.substring(24,48))
+                        converter.binaryToFloat(mutatingNumberBinary.substring(0, 24)),
+                        converter.binaryToFloat(mutatingNumberBinary.substring(24, 48))
                 });
             }
             //inversion
             for (int j = 0; j < population.size(); j++) {
                 Float[] invertingNumber = population.get(j);
-                String invertingNumberBinary = converter.floatToBinary(invertingNumber[0])+converter.floatToBinary(invertingNumber[1]);
-                String inverted=inversion.invert(invertingNumberBinary);
+                String invertingNumberBinary = converter.floatToBinary(invertingNumber[0]) + converter.floatToBinary(invertingNumber[1]);
+                String inverted = inversion.invert(invertingNumberBinary);
                 population.set(j, new Float[]{
-                        converter.binaryToFloat(inverted.substring(0,24)),
-                        converter.binaryToFloat(inverted.substring(24,48))
+                        converter.binaryToFloat(inverted.substring(0, 24)),
+                        converter.binaryToFloat(inverted.substring(24, 48))
                 });
             }
             //elite strategy: add best to population
@@ -134,26 +141,56 @@ public class GeneticAlgorithm {
         }
     }
 
+    private void setupLogs() {
+        FileHandler fileHandler;
+
+        try {
+            // This block configure the logger with handler and formatter
+            fileHandler = new FileHandler("logs/sample.log");
+            ConsoleHandler consoleHandler = new ConsoleHandler();
+            logger.setUseParentHandlers(false);
+            CustomRecordFormatter formatter = new CustomRecordFormatter();
+            fileHandler.setFormatter(formatter);
+            logger.addHandler(fileHandler);
+
+            consoleHandler.setFormatter(formatter);
+            logger.addHandler(consoleHandler);
+        } catch (SecurityException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void logCurrentIteration(int i, Float[] best) throws FileNotFoundException {
+        logger.info("Epoka: " + i);
+        logger.info("Populacja: " + SomeMethods.get(population));
+        logger.info("Wartości: " + SomeMethods.getValues(population));
+        logger.info("Najlepszy osobnik: " + SomeMethods.getOne(best));
+        logger.info("Wartość najlepszego: " + SomeMethods.fun(best));
+        logger.info("\n\n");
+        if (i + 1 == epochsNumber) {
+            resultTextArea.setText("Najlepszy osobnik: " + SomeMethods.getOne(best) + "\n" +
+                    "Wartość najlepszego: " + SomeMethods.fun(best));
+        }
+    }
+
     void generatePopulation() {
         population = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < populationAmount; i++) {
-            population.add(new Float[]{random.nextFloat() * 5 - 5,random.nextFloat() * 5 - 5});
-            System.out.println("Added: " + SomeMethods.getOne(population.get(population.size() - 1)));
+            population.add(new Float[]{random.nextFloat() * 5 - 5, random.nextFloat() * 5 - 5});
+            logger.info("Added: " + SomeMethods.getOne(population.get(population.size() - 1)));
         }
         SomeMethods.print(population);
     }
 
-    void extremaChoice(Extrema extrema)
-    {
-        chosenExtrema=extrema;
-        switch (extrema)
-        {
+    void extremaChoice(Extrema extrema) {
+        chosenExtrema = extrema;
+        switch (extrema) {
             case Maximum:
-                this.extrema= new Maximum();
+                this.extrema = new Maximum();
                 break;
             case Minimum:
-                this.extrema= new Minimum();
+                this.extrema = new Minimum();
                 break;
         }
     }
@@ -204,4 +241,7 @@ public class GeneticAlgorithm {
         this.inversion = new Inversion(probability);
     }
 
+    public void setResultTextArea(JTextArea resultTextArea) {
+        this.resultTextArea = resultTextArea;
+    }
 }
