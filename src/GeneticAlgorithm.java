@@ -129,8 +129,8 @@ public class GeneticAlgorithm {
                 String mutatingNumberBinary = converter.floatToBinary(mutatingNumber[0]) + converter.floatToBinary(mutatingNumber[1]);
                 String mutated = mutation.mutate(mutatingNumberBinary);
                 population.set(j, new Float[]{
-                        converter.binaryToFloat(mutatingNumberBinary.substring(0, 24)),
-                        converter.binaryToFloat(mutatingNumberBinary.substring(24, 48))
+                        converter.binaryToFloat(mutated.substring(0, 24)),
+                        converter.binaryToFloat(mutated.substring(24, 48))
                 });
             }
             //inversion
