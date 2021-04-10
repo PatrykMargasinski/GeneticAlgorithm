@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41341926-fbf3-4008-9aeb-578fb63efe7d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/selection/RouletteSelection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/selection/RouletteSelection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/selection/RouletteSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/selection/RouletteSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/someMethods/SomeMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/someMethods/SomeMethods.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
