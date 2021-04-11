@@ -1,9 +1,12 @@
 package someMethods;
 
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SomeMethods {
 
@@ -110,5 +113,19 @@ public class SomeMethods {
     public static int generateRandomPoint(int length){
         Random random = new Random();
         return random.nextInt(length);
+    }
+
+    public static List<Integer> getSomeVariousNumbers(int amount)
+    {
+        List<Integer> range = IntStream.range(0, amount).boxed()
+                .collect(Collectors.toCollection(ArrayList::new));
+        Collections.shuffle(range);
+        List<Integer> chosenOnes=new ArrayList<>();
+        for(int i=0;i<amount;i++)
+            chosenOnes.add(range.remove(0));
+
+        Collections.sort(chosenOnes);
+
+        return chosenOnes;
     }
 }
