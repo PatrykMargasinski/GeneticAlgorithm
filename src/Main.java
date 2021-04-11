@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        testSelection();
+        testRandomNumbers();
     }
 
     public static void testGenetic() {
@@ -36,6 +36,13 @@ public class Main {
         List<Float[]>pop=new ArrayList<>();
         pop.add(new Float[]{1f,1f});pop.add(new Float[]{1f,1f});pop.add(new Float[]{1f,1f});pop.add(new Float[]{1f,2f});
         System.out.println(SomeMethods.getStandardDeviation(pop));
+    }
+
+    public static void testRandomNumbers()
+    {
+        List<Integer>pop;
+        pop=SomeMethods.getSomeVariousNumbers(3,24);
+        System.out.println(pop);
     }
 
     public static void testSelection() {

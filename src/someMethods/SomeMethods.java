@@ -115,9 +115,9 @@ public class SomeMethods {
         return random.nextInt(length);
     }
 
-    public static List<Integer> getSomeVariousNumbers(int amount)
+    public static List<Integer> getSomeVariousNumbers(int amount, int limit)
     {
-        List<Integer> range = IntStream.range(0, amount).boxed()
+        List<Integer> range = IntStream.range(0, limit).boxed()
                 .collect(Collectors.toCollection(ArrayList::new));
         Collections.shuffle(range);
         List<Integer> chosenOnes=new ArrayList<>();

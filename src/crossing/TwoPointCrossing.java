@@ -16,7 +16,7 @@ public class TwoPointCrossing implements ICrossover {
 
     @Override
     public String[] cross(String s1, String s2) {
-        List<Integer> points=SomeMethods.getSomeVariousNumbers(2);
+        List<Integer> points=SomeMethods.getSomeVariousNumbers(2,24);
         int p1 = points.get(0);
         int p2 = points.get(1);
         StringBuilder sb1=new StringBuilder(s1);

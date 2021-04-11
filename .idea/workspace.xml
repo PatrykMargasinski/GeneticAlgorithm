@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41341926-fbf3-4008-9aeb-578fb63efe7d" name="Default Changelist" comment="added generating 2 plots">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crossing/Crossover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/Crossover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/crossing/OnePointCrossing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/OnePointCrossing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/crossing/ThreePointCrossing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/ThreePointCrossing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/crossing/TwoPointCrossing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/TwoPointCrossing.java" afterDir="false" />
@@ -66,7 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GeneticAlgorithmForm">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="GeneticAlgorithmForm" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="GeneticAlgorithmForm" />
       <module name="untitled104" />
@@ -85,8 +84,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GeneticAlgorithmForm" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GeneticAlgorithmForm" />
       </list>
     </recent_temporary>
   </component>
