@@ -13,10 +13,12 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import selection.Selection;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class GeneticAlgorithmForm {
     private JButton acceptButton;
@@ -59,7 +61,7 @@ public class GeneticAlgorithmForm {
         crossoverProbSpinner.setModel(new SpinnerNumberModel(90, 0, 100, 1));
         mutationProbSpinner.setModel(new SpinnerNumberModel(10, 0, 100, 1));
         inversionProbSpinner.setModel(new SpinnerNumberModel(10, 0, 100, 1));
-        eliteStrategyBestAmountSpinner.setModel(new SpinnerNumberModel(1,0,5,1));
+        eliteStrategyBestAmountSpinner.setModel(new SpinnerNumberModel(1, 0, 5, 1));
         resultTextArea.setSize(100, 1000);
         acceptButton.addActionListener(e -> {
             geneticAlgorithm = new GeneticAlgorithm((Integer) populationSpinner.getValue(), Float.parseFloat(String.valueOf(epochsSpinner.getValue())),
@@ -73,6 +75,8 @@ public class GeneticAlgorithmForm {
             geneticAlgorithm.run();
         });
         plot1Button.addActionListener(e -> {
+            plotPanel.removeAll();
+
             plotPanel.setLayout(new BorderLayout());
             XYDataset dataset = createDataset(geneticAlgorithm.getFirstPlotXYSeries());
 
@@ -82,8 +86,11 @@ public class GeneticAlgorithmForm {
             ChartPanel cp = new ChartPanel(chart);
             plotPanel.add(cp, BorderLayout.CENTER);
             plotPanel.validate();
+            generateJpgFromJPanel("plot1.jpg");
         });
         plot2Button.addActionListener(e -> {
+            plotPanel.removeAll();
+
             plotPanel.setLayout(new BorderLayout());
             XYDataset dataset = createDataset(geneticAlgorithm.getSecondPlotXYSeries());
 
@@ -92,8 +99,11 @@ public class GeneticAlgorithmForm {
             ChartPanel cp = new ChartPanel(chart);
             plotPanel.add(cp, BorderLayout.CENTER);
             plotPanel.validate();
+            generateJpgFromJPanel("plot2.jpg");
         });
         plot3Button.addActionListener(e -> {
+            plotPanel.removeAll();
+
             plotPanel.setLayout(new BorderLayout());
             XYDataset dataset = createDataset(geneticAlgorithm.getThirdPlotXYSeries());
 
@@ -102,7 +112,18 @@ public class GeneticAlgorithmForm {
             ChartPanel cp = new ChartPanel(chart);
             plotPanel.add(cp, BorderLayout.CENTER);
             plotPanel.validate();
+            generateJpgFromJPanel("plot3.jpg");
         });
+    }
+
+    void generateJpgFromJPanel(String name) {
+        BufferedImage img = new BufferedImage(plotPanel.getWidth(), plotPanel.getHeight(), BufferedImage.TYPE_INT_RGB);
+        plotPanel.print(img.getGraphics());
+        try {
+            ImageIO.write(img, "jpg", new File("plots/" + name));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private XYDataset createDataset(XYSeries series) {
