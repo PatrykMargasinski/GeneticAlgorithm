@@ -19,7 +19,7 @@ public class TwoPointCrossing implements ICrossover {
     public String[] cross(String s1, String s2) {
         StringBuilder sb1=new StringBuilder(s1);
         StringBuilder sb2=new StringBuilder(s2);
-        for(int i=0;i<p1;i++)
+        for(int i=0;i<s1.length();i++)
         {
             boolean crossCondition=crossingInside?i>=p1&&i<=p2:i<=p1 || i>=p2;
             if(crossCondition && SomeMethods.checkProbability(probability)==true) {

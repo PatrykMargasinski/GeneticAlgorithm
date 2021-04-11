@@ -65,7 +65,7 @@ public class GeneticAlgorithmForm {
                     Crossover.valueOf(crossoverComboBox.getSelectedIndex()), (Integer) crossoverProbSpinner.getValue(),
                     Mutation.valueOf(mutationComboBox.getSelectedIndex()), (Integer) mutationProbSpinner.getValue(),
                     (Integer) inversionProbSpinner.getValue(),
-                    eliteStrategyComboBox.getSelectedIndex());
+                    eliteStrategyComboBox.getSelectedIndex(), 1);
             geneticAlgorithm.setResultTextArea(resultTextArea);
             geneticAlgorithm.run();
         });

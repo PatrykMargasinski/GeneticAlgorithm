@@ -38,6 +38,7 @@ public class GeneticAlgorithm {
     IInversion inversion;
     FloatToBytes converter = new FloatToBytes(-10, 10);
     boolean isEliteStrategyEnabled;
+    int bestAmount;
     JTextArea resultTextArea;
     long createdMillis;
     XYSeries firstPlotXYSeries;
@@ -51,7 +52,8 @@ public class GeneticAlgorithm {
                             Extrema extrema,
                             Selection selection, int chosenAmount,
                             Crossover crossover, int crossoverProbability,
-                            Mutation mutation, int mutationProbability, int inversionProbability, int isEliteStrategyEnabled) {
+                            Mutation mutation, int mutationProbability, int inversionProbability,
+                            int isEliteStrategyEnabled, int bestAmount) {
         this.populationAmount = populationAmount;
         this.epochsNumber = epochsNumber;
         this.chosenAmount = chosenAmount;
@@ -61,7 +63,8 @@ public class GeneticAlgorithm {
         mutationChoice(mutation, mutationProbability);
         crossoverChoice(crossover, crossoverProbability);
         inversionChoice(inversionProbability);
-        this.isEliteStrategyEnabled = isEliteStrategyEnabled == 0;
+        this.isEliteStrategyEnabled = isEliteStrategyEnabled==0;
+        this.bestAmount=bestAmount;
     }
 
 
@@ -76,6 +79,8 @@ public class GeneticAlgorithm {
             //save best from population
             Float[] best = extrema.getExtrema(population);
 
+            List<Float[]> bestOnes=extrema.getSomeBest(population,bestAmount);
+
             try {
                 logCurrentIteration(i, best);
             } catch (FileNotFoundException e) {
@@ -89,7 +94,7 @@ public class GeneticAlgorithm {
 
             //crossing
             List<Float[]> chosenOnesCopy = new ArrayList<>(population);
-            while (population.size() < populationAmount - 1) {
+            while (population.size() < populationAmount - (isEliteStrategyEnabled?bestAmount:0)) {
                 List<Integer> range = IntStream.range(0, chosenOnesCopy.size()).boxed()
                         .collect(Collectors.toCollection(ArrayList::new));
                 Collections.shuffle(range);
@@ -150,7 +155,8 @@ public class GeneticAlgorithm {
             }
             //elite strategy: add best to population
             if (isEliteStrategyEnabled) {
-                population.add(best);
+                for(int j=0;j<bestAmount;j++)
+                    population.add(bestOnes.get(j));
             }
         }
     }

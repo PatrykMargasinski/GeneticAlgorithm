@@ -2,6 +2,9 @@ package comparing;
 
 import someMethods.SomeMethods;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Maximum implements IExtrema {
@@ -14,5 +17,17 @@ public class Maximum implements IExtrema {
             }
         }
         return max;
+    }
+
+    @Override
+    public List<Float[]> getSomeBest(List<Float[]> population, int bestAmount)
+    {
+        Collections.sort(population, Comparator.comparing(SomeMethods::fun).reversed());
+        List<Float[]> bestOnes=new ArrayList<>();
+        for(int i=0;i<bestAmount;i++)
+        {
+            bestOnes.add(population.get(i));
+        }
+        return bestOnes;
     }
 }

@@ -7,10 +7,7 @@ import inversion.Inversion;
 import mutation.IMutation;
 import mutation.Mutation;
 import mutation.OnePointMutation;
-import selection.BestSelection;
-import selection.ISelection;
-import selection.RouletteSelection;
-import selection.Selection;
+import selection.*;
 import someMethods.FloatToBytes;
 import someMethods.SomeMethods;
 
@@ -20,7 +17,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        testDeviation();
+        testSelection();
     }
 
     public static void testGenetic() {
@@ -28,7 +25,9 @@ public class Main {
                 Extrema.Minimum,
                 Selection.Best, 5,
                 Crossover.Homogeneous, 90,
-                Mutation.Border, 10, 10, 0);
+                Mutation.Border, 10,
+                10,
+                0,1);
         geneticAlgorithm.run();
     }
 
@@ -40,16 +39,15 @@ public class Main {
     }
 
     public static void testSelection() {
-        ISelection sel=new RouletteSelection(2);
+        ISelection sel=new TournamentSelection(3);
         List<Float[]>pop=new ArrayList<>();
         pop.add(new Float[]{1f,1f});pop.add(new Float[]{2f,2f});pop.add(new Float[]{3f,3f});pop.add(new Float[]{4f,4f});
         pop.add(new Float[]{5f,5f});pop.add(new Float[]{6f,6f});pop.add(new Float[]{7f,7f});pop.add(new Float[]{8f,8f});
         SomeMethods.print(pop);
         SomeMethods.printValues(pop);
-        List<Float[]> wynik=sel.select(pop,Extrema.Maximum);
+        List<Float[]> wynik=sel.select(pop,Extrema.Minimum);
         System.out.println("\n\n\n\n");
         SomeMethods.print(wynik);
         SomeMethods.printValues(wynik);
     }
-
 }

@@ -3,7 +3,7 @@ package mutation;
 import crossing.Crossover;
 
 public enum Mutation {
-    OnePoint,TwoPoint,Border;
+    OnePoint,TwoPoint,ThreePoint, Border;
 
     public static Mutation valueOf(int selectedIndex) {
         return Mutation.values()[selectedIndex];
