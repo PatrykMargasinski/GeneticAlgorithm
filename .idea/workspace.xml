@@ -3,32 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="41341926-fbf3-4008-9aeb-578fb63efe7d" name="Default Changelist" comment="added generating 2 plots">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/geneticAlgorithm.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.1" beforeDir="false" afterPath="$PROJECT_DIR$/logs/geneticAlgorithm.log.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.2" beforeDir="false" afterPath="$PROJECT_DIR$/logs/geneticAlgorithm.log.2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithmForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/GeneticAlgorithmForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/AbstractLayout.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/DimensionInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/GridConstraints.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/GridLayoutManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/HorizontalInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/LayoutState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/Spacer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/SupportCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/Util.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled104/com/intellij/uiDesigner/core/VerticalInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.15" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.16" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.17" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.18" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.19" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/geneticAlgorithm.log.9" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithmForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithmForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithmForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithmForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/comparing/IExtrema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/comparing/IExtrema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/comparing/Maximum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/comparing/Maximum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/comparing/Minimum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/comparing/Minimum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crossing/TwoPointCrossing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/TwoPointCrossing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mutation/Mutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mutation/Mutation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/someMethods/SomeMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/someMethods/SomeMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crossing/Crossover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crossing/Crossover.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,18 +72,6 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.GeneticAlgorithmForm">
     <configuration name="GeneticAlgorithmForm" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="GeneticAlgorithmForm" />
@@ -101,6 +89,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GeneticAlgorithmForm" />
@@ -108,7 +107,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -138,13 +137,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added generating 2 plots" />

@@ -265,6 +265,9 @@ public class GeneticAlgorithm {
             case Homogeneous:
                 this.crossover = new HomogeneousCrossing(true, probability);
                 break;
+            case ThreePoint:
+                this.crossover = new ThreePointCrossing(5,10,15, probability,true);
+                break;
         }
     }
 

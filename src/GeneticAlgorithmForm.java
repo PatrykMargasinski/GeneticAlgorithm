@@ -48,6 +48,8 @@ public class GeneticAlgorithmForm {
     private JButton plot1Button;
     private JButton plot2Button;
     private JButton plot3Button;
+    private JSpinner eliteStrategyBestAmountSpinner;
+    private JLabel eliteStrategyBestAmountLabel;
     GeneticAlgorithm geneticAlgorithm;
 
     public GeneticAlgorithmForm() {
@@ -57,6 +59,7 @@ public class GeneticAlgorithmForm {
         crossoverProbSpinner.setModel(new SpinnerNumberModel(90, 0, 100, 1));
         mutationProbSpinner.setModel(new SpinnerNumberModel(10, 0, 100, 1));
         inversionProbSpinner.setModel(new SpinnerNumberModel(10, 0, 100, 1));
+        eliteStrategyBestAmountSpinner.setModel(new SpinnerNumberModel(1,0,5,1));
         resultTextArea.setSize(100, 1000);
         acceptButton.addActionListener(e -> {
             geneticAlgorithm = new GeneticAlgorithm((Integer) populationSpinner.getValue(), Float.parseFloat(String.valueOf(epochsSpinner.getValue())),
@@ -65,7 +68,7 @@ public class GeneticAlgorithmForm {
                     Crossover.valueOf(crossoverComboBox.getSelectedIndex()), (Integer) crossoverProbSpinner.getValue(),
                     Mutation.valueOf(mutationComboBox.getSelectedIndex()), (Integer) mutationProbSpinner.getValue(),
                     (Integer) inversionProbSpinner.getValue(),
-                    eliteStrategyComboBox.getSelectedIndex(), 1);
+                    eliteStrategyComboBox.getSelectedIndex(), (Integer) eliteStrategyBestAmountSpinner.getValue());
             geneticAlgorithm.setResultTextArea(resultTextArea);
             geneticAlgorithm.run();
         });
