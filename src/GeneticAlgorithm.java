@@ -257,16 +257,16 @@ public class GeneticAlgorithm {
     void crossoverChoice(Crossover crossover, int probability) {
         switch (crossover) {
             case OnePoint:
-                this.crossover = new OnePointCrossing(5, probability, true);
+                this.crossover = new OnePointCrossing(probability, true);
                 break;
             case TwoPoint:
-                this.crossover = new TwoPointCrossing(5, 10, probability, true);
+                this.crossover = new TwoPointCrossing(probability, true);
+                break;
+            case ThreePoint:
+                this.crossover = new ThreePointCrossing(probability, true);
                 break;
             case Homogeneous:
                 this.crossover = new HomogeneousCrossing(true, probability);
-                break;
-            case ThreePoint:
-                this.crossover = new ThreePointCrossing(5,10,15, probability,true);
                 break;
         }
     }

@@ -3,13 +3,11 @@ package crossing;
 import someMethods.SomeMethods;
 
 public class OnePointCrossing implements ICrossover {
-    int point;
     int probability;
     boolean startWithTheLeft;//true - zaczyna od lewej do punktu. False - od punktu do prawej
 
-    public OnePointCrossing(int point, int probability, boolean startWithTheLeft)
+    public OnePointCrossing(int probability, boolean startWithTheLeft)
     {
-        this.point=point;
         this.probability=probability;
         this.startWithTheLeft=startWithTheLeft;
     }
@@ -18,6 +16,7 @@ public class OnePointCrossing implements ICrossover {
     public String[] cross(String s1, String s2) {
         StringBuilder sb1=new StringBuilder(s1);
         StringBuilder sb2=new StringBuilder(s2);
+        int point=SomeMethods.getSomeVariousNumbers(1,24).get(0);
         for(int i=0;i<sb1.length();i++)
         {
             boolean crossCondition=startWithTheLeft?i<=point:i>=point;
