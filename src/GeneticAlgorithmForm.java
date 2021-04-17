@@ -55,7 +55,7 @@ public class GeneticAlgorithmForm {
     GeneticAlgorithm geneticAlgorithm;
 
     public GeneticAlgorithmForm() {
-        populationSpinner.setModel(new SpinnerNumberModel(30, 0, 50, 1));
+        populationSpinner.setModel(new SpinnerNumberModel(30, 0, 1000, 1));
         epochsSpinner.setModel(new SpinnerNumberModel(500f, 0f, 1000f, 1f));
         selectionProbSpinner.setModel(new SpinnerNumberModel(5, 0, 10, 1));
         crossoverProbSpinner.setModel(new SpinnerNumberModel(90, 0, 100, 1));

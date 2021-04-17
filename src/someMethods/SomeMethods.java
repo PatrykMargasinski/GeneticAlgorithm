@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 public class SomeMethods {
 
-    public static Float ffun(Float[] x) {
+    public static Float fun(Float[] x) {
         double sum1 = 0.0;
         double sum2 = 0.0;
         sum1 += Math.pow(x[0], 2);
@@ -22,9 +22,9 @@ public class SomeMethods {
                 Math.exp(sum2 / (2f)) + 20.0f + Math.exp(1));
     }
 
-    public static Float fun(Float[] x)
+    public static Float testFun(Float[] x)
     {
-        return x[0]*x[0]+x[1]*x[1];
+        return x[0]*x[0]+x[1]*x[1] + 2;
     }
 
     //jest okreslona szansa na mutacje lub krzyżowanie. Tutaj jest metoda sprawdzająca, czy strzął o prawdopodobieństwie
