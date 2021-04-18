@@ -3,8 +3,8 @@ package someMethods;
 
 //modyfikowalem tu troche. Moglem popsuć, jest taka opcja xd
 public class FloatToBytes {
-    static int a=-10;
-    static int b=10;
+    static public int a=-10;
+    static public int b=10;
 
     private static String to24Bytes(String binary)
     {

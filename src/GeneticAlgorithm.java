@@ -117,6 +117,7 @@ public class GeneticAlgorithm {
                         parentOne[1],
                         parentTwo[1]
                 );
+                //jeżeli x1>x2 i y1>y2 to należy nie krzyżować
                 if(crossover instanceof HeuresticCrossing && !(secondHalf[0]>firstHalf[0]) && secondHalf[1]>firstHalf[1])
                     continue;
                 if (random.nextInt(2) == 0) population.add(
@@ -288,6 +289,15 @@ public class GeneticAlgorithm {
                 break;
             case Border:
                 this.mutation = new BorderMutation(probability);
+                break;
+            case Index:
+                this.mutation = new IndexMutation(probability);
+                break;
+            case Uniform:
+                this.mutation = new UniformMutation(probability);
+                break;
+            case Gauss:
+                this.mutation = new GaussMutation(probability);
                 break;
         }
     }
