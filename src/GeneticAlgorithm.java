@@ -117,7 +117,8 @@ public class GeneticAlgorithm {
                         parentOne[1],
                         parentTwo[1]
                 );
-
+                if(crossover instanceof HeuresticCrossing && !(secondHalf[0]>firstHalf[0]) && secondHalf[1]>firstHalf[1])
+                    continue;
                 if (random.nextInt(2) == 0) population.add(
                         new Float[]{
                                 firstHalf[0],
@@ -266,6 +267,12 @@ public class GeneticAlgorithm {
                 break;
             case Homogeneous:
                 this.crossover = new HomogeneousCrossing(true, probability);
+                break;
+            case Arithmetic:
+                this.crossover = new ArithmeticCrossing();
+                break;
+            case Heurestic:
+                this.crossover = new HeuresticCrossing();
                 break;
         }
     }
