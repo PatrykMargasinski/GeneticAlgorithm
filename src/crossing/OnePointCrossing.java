@@ -1,5 +1,6 @@
 package crossing;
 
+import someMethods.FloatToBytes;
 import someMethods.SomeMethods;
 
 public class OnePointCrossing implements ICrossover {
@@ -13,9 +14,9 @@ public class OnePointCrossing implements ICrossover {
     }
 
     @Override
-    public String[] cross(String s1, String s2) {
-        StringBuilder sb1=new StringBuilder(s1);
-        StringBuilder sb2=new StringBuilder(s2);
+    public Float[] cross(Float s1, Float s2) {
+        StringBuilder sb1=new StringBuilder(FloatToBytes.floatToBinary(s1));
+        StringBuilder sb2=new StringBuilder(FloatToBytes.floatToBinary(s2));
         int point=SomeMethods.getSomeVariousNumbers(1,24).get(0);
         for(int i=0;i<sb1.length();i++)
         {
@@ -26,6 +27,8 @@ public class OnePointCrossing implements ICrossover {
                 sb2.setCharAt(i, temp);
             }
         }
-        return new String[]{sb1.toString(),sb2.toString()};
+        return new Float[]{
+                FloatToBytes.binaryToFloat(sb1.toString()),
+                FloatToBytes.binaryToFloat(sb2.toString())};
     }
 }
