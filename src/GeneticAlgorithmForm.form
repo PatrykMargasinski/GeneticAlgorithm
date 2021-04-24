@@ -115,6 +115,8 @@
             <item value="Two Point"/>
             <item value="Three Point"/>
             <item value="Homogeneous"/>
+            <item value="Arithmetic"/>
+            <item value="Heurestic"/>
           </model>
         </properties>
       </component>
@@ -149,6 +151,9 @@
             <item value="One Point"/>
             <item value="Two Point"/>
             <item value="Border"/>
+            <item value="Index"/>
+            <item value="Uniform"/>
+            <item value="Gauss"/>
           </model>
         </properties>
       </component>

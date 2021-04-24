@@ -14,7 +14,6 @@ import someMethods.SomeMethods;
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +36,6 @@ public class GeneticAlgorithm {
     ICrossover crossover;
     IMutation mutation;
     IInversion inversion;
-    FloatToBytes converter = new FloatToBytes(-10, 10);
     boolean isEliteStrategyEnabled;
     int bestAmount;
     JTextArea resultTextArea;
@@ -100,36 +98,38 @@ public class GeneticAlgorithm {
                         .collect(Collectors.toCollection(ArrayList::new));
                 Collections.shuffle(range);
                 int removed = range.remove(0);
-                String[] parentOne = new String[]{
-                        converter.floatToBinary(chosenOnesCopy.get(removed)[0]),
-                        converter.floatToBinary(chosenOnesCopy.get(removed)[1])
+                Float[] parentOne = new Float[]{
+                        chosenOnesCopy.get(removed)[0],
+                        chosenOnesCopy.get(removed)[1]
                 };
                 removed = range.remove(0);
-                String[] parentTwo = new String[]{
-                        converter.floatToBinary(chosenOnesCopy.get(removed)[0]),
-                        converter.floatToBinary(chosenOnesCopy.get(removed)[1])
+                Float[] parentTwo = new Float[]{
+                        chosenOnesCopy.get(removed)[0],
+                        chosenOnesCopy.get(removed)[1]
                 };
 
-                String[] firstHalf = crossover.cross(
+                Float[] firstHalf = crossover.cross(
                         parentOne[0],
                         parentTwo[0]
                 );
 
-                String[] secondHalf = crossover.cross(
+                Float[] secondHalf = crossover.cross(
                         parentOne[1],
                         parentTwo[1]
                 );
-
+                //jeżeli x1>x2 i y1>y2 to należy nie krzyżować
+                if(crossover instanceof HeuresticCrossing && !(secondHalf[0]>firstHalf[0]) && secondHalf[1]>firstHalf[1])
+                    continue;
                 if (random.nextInt(2) == 0) population.add(
                         new Float[]{
-                                converter.binaryToFloat(firstHalf[0]),
-                                converter.binaryToFloat(secondHalf[0])
+                                firstHalf[0],
+                                secondHalf[0]
                         }
                 );
                 else population.add(
                         new Float[]{
-                                converter.binaryToFloat(firstHalf[1]),
-                                converter.binaryToFloat(secondHalf[1])
+                                firstHalf[1],
+                                secondHalf[1]
                         });
 
             }
@@ -137,21 +137,18 @@ public class GeneticAlgorithm {
             //mutation
             for (int j = 0; j < population.size(); j++) {
                 Float[] mutatingNumber = population.get(j);
-                String mutatingNumberBinary = converter.floatToBinary(mutatingNumber[0]) + converter.floatToBinary(mutatingNumber[1]);
-                String mutated = mutation.mutate(mutatingNumberBinary);
-                population.set(j, new Float[]{
-                        converter.binaryToFloat(mutated.substring(0, 24)),
-                        converter.binaryToFloat(mutated.substring(24, 48))
-                });
+                String mutatingNumberBinary = FloatToBytes.floatToBinary(mutatingNumber[0]) + FloatToBytes.floatToBinary(mutatingNumber[1]);
+                Float[] mutated = mutation.mutate(mutatingNumber);
+                population.set(j, mutated);
             }
             //inversion
             for (int j = 0; j < population.size(); j++) {
                 Float[] invertingNumber = population.get(j);
-                String invertingNumberBinary = converter.floatToBinary(invertingNumber[0]) + converter.floatToBinary(invertingNumber[1]);
+                String invertingNumberBinary = FloatToBytes.floatToBinary(invertingNumber[0]) + FloatToBytes.floatToBinary(invertingNumber[1]);
                 String inverted = inversion.invert(invertingNumberBinary);
                 population.set(j, new Float[]{
-                        converter.binaryToFloat(inverted.substring(0, 24)),
-                        converter.binaryToFloat(inverted.substring(24, 48))
+                        FloatToBytes.binaryToFloat(inverted.substring(0, 24)),
+                        FloatToBytes.binaryToFloat(inverted.substring(24, 48))
                 });
             }
             //elite strategy: add best to population
@@ -269,6 +266,12 @@ public class GeneticAlgorithm {
             case Homogeneous:
                 this.crossover = new HomogeneousCrossing(true, probability);
                 break;
+            case Arithmetic:
+                this.crossover = new ArithmeticCrossing();
+                break;
+            case Heurestic:
+                this.crossover = new HeuresticCrossing();
+                break;
         }
     }
 
@@ -283,6 +286,15 @@ public class GeneticAlgorithm {
                 break;
             case Border:
                 this.mutation = new BorderMutation(probability);
+                break;
+            case Index:
+                this.mutation = new IndexMutation(probability);
+                break;
+            case Uniform:
+                this.mutation = new UniformMutation(probability);
+                break;
+            case Gauss:
+                this.mutation = new GaussMutation(probability);
                 break;
         }
     }

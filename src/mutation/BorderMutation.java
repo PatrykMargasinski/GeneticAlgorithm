@@ -14,8 +14,8 @@ public class BorderMutation implements IMutation {
     }
 
     @Override
-    public String mutate(String s1) {
-        StringBuilder sb1=new StringBuilder(s1);
+    public Float[] mutate(Float[] f1) {
+        StringBuilder sb1=new StringBuilder(FloatToBytes.floatToBinary(f1[0]) + FloatToBytes.floatToBinary(f1[1]));
         int borderIndex = lastOrFirst(sb1.length() - 1);
         if (SomeMethods.checkProbability(probability)) {
             char temp = sb1.charAt(borderIndex);
@@ -23,7 +23,11 @@ public class BorderMutation implements IMutation {
             else temp = '0';
             sb1.setCharAt(borderIndex, temp);
         }
-        return sb1.toString();
+        String s1=sb1.toString();
+        return new Float[]{
+                FloatToBytes.binaryToFloat(s1.substring(0, 24)),
+                FloatToBytes.binaryToFloat(s1.substring(24, 48))
+        };
     }
 
     private int lastOrFirst(int lastIndex) {

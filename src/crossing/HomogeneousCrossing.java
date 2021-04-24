@@ -1,5 +1,6 @@
 package crossing;
 
+import someMethods.FloatToBytes;
 import someMethods.SomeMethods;
 
 //wymiana co drugi gen
@@ -14,9 +15,9 @@ public class HomogeneousCrossing implements ICrossover {
     }
 
     @Override
-    public String[] cross(String s1, String s2) {
-        StringBuilder sb1=new StringBuilder(s1);
-        StringBuilder sb2=new StringBuilder(s2);
+    public Float[] cross(Float s1, Float s2) {
+        StringBuilder sb1=new StringBuilder(FloatToBytes.floatToBinary(s1));
+        StringBuilder sb2=new StringBuilder(FloatToBytes.floatToBinary(s2));
         for(int i=0;i<sb1.length();i++)
         {
             boolean crossCondition=even?i%2==0:i%2==1;
@@ -27,6 +28,8 @@ public class HomogeneousCrossing implements ICrossover {
                 sb2.setCharAt(i,temp);
             }
         }
-        return new String[]{sb1.toString(),sb2.toString()};
+        return new Float[]{
+                FloatToBytes.binaryToFloat(sb1.toString()),
+                FloatToBytes.binaryToFloat(sb2.toString())};
     }
 }

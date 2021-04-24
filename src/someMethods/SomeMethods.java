@@ -24,7 +24,7 @@ public class SomeMethods {
 
     public static Float testFun(Float[] x)
     {
-        return x[0]*x[0]+x[1]*x[1] + 2;
+        return -(x[0]*x[0]+x[1]*x[1] + 2);
     }
 
     //jest okreslona szansa na mutacje lub krzyżowanie. Tutaj jest metoda sprawdzająca, czy strzął o prawdopodobieństwie
