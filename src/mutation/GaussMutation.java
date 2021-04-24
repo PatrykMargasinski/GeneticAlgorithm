@@ -17,20 +17,19 @@ public class GaussMutation implements IMutation {
     }
     Random random=new Random();
     @Override
-    public String mutate(String s1) {
-        Float[] ind=new Float[]{
-                FloatToBytes.binaryToFloat(s1.substring(0, 24)),
-                FloatToBytes.binaryToFloat(s1.substring(24, 48))
-        };
+    public Float[] mutate(Float[] f1) {
         if(checkProbability(probability))
         {
-            ind[0]+= (float)random.nextGaussian();
+            if(SomeMethods.checkProbability(50))
+                f1[0]+= (float)random.nextGaussian();
+            else
+                f1[1]+= (float)random.nextGaussian();
+            if(f1[0]>FloatToBytes.b)f1[0]=10f;
+            if(f1[1]>FloatToBytes.b)f1[1]=10f;
+            if(f1[0]<FloatToBytes.a)f1[0]=-10f;
+            if(f1[1]<FloatToBytes.a)f1[1]=-10f;
         }
-        if(checkProbability(probability))
-        {
-            ind[1]+= (float)random.nextGaussian();
-        }
-        return FloatToBytes.floatToBinary(ind[0])+FloatToBytes.floatToBinary(ind[1]);
+        return f1;
     }
 
 }

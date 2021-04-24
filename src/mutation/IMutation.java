@@ -1,5 +1,5 @@
 package mutation;
 
 public interface IMutation {
-    String mutate(String sb1);
+    Float[] mutate(Float[] sb1);
 }

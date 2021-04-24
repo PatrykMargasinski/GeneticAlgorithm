@@ -138,11 +138,8 @@ public class GeneticAlgorithm {
             for (int j = 0; j < population.size(); j++) {
                 Float[] mutatingNumber = population.get(j);
                 String mutatingNumberBinary = FloatToBytes.floatToBinary(mutatingNumber[0]) + FloatToBytes.floatToBinary(mutatingNumber[1]);
-                String mutated = mutation.mutate(mutatingNumberBinary);
-                population.set(j, new Float[]{
-                        FloatToBytes.binaryToFloat(mutated.substring(0, 24)),
-                        FloatToBytes.binaryToFloat(mutated.substring(24, 48))
-                });
+                Float[] mutated = mutation.mutate(mutatingNumber);
+                population.set(j, mutated);
             }
             //inversion
             for (int j = 0; j < population.size(); j++) {

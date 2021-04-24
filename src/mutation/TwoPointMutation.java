@@ -1,5 +1,6 @@
 package mutation;
 
+import someMethods.FloatToBytes;
 import someMethods.SomeMethods;
 
 import static someMethods.SomeMethods.generateRandomPoint;
@@ -13,8 +14,8 @@ public class TwoPointMutation implements IMutation {
     }
 
     @Override
-    public String mutate(String s1) {
-        StringBuilder sb1=new StringBuilder(s1);
+    public Float[] mutate(Float[] f1) {
+        StringBuilder sb1=new StringBuilder(FloatToBytes.floatToBinary(f1[0]) + FloatToBytes.floatToBinary(f1[1]));
         int p1 = generateRandomPoint(sb1.length());
         int p2 = generateRandomPoint(sb1.length());
         if (SomeMethods.checkProbability(probability) == true) {
@@ -28,6 +29,10 @@ public class TwoPointMutation implements IMutation {
             else temp = '0';
             sb1.setCharAt(p2, temp);
         }
-        return sb1.toString();
+        String s1=sb1.toString();
+        return new Float[]{
+                FloatToBytes.binaryToFloat(s1.substring(0, 24)),
+                FloatToBytes.binaryToFloat(s1.substring(24, 48))
+        };
     }
 }
